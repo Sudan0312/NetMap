@@ -1,0 +1,68 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "netmap"
+version = "1.0.0"
+description = "Enterprise network topology mapping and risk analysis: auto-discovery, device/link risk scoring, compliance-mapped findings, reports and a dashboard. Core is pure stdlib."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+keywords = ["network", "topology", "discovery", "snmp", "lldp", "cdp", "risk", "security", "sarif", "cmdb"]
+authors = [{ name = "NetMap contributors" }]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Environment :: Console",
+  "Intended Audience :: System Administrators",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Topic :: System :: Networking",
+  "Topic :: Security",
+]
+
+# The core has no runtime dependencies on purpose: discovery has to run on a
+# jump host where `pip install` is not an option. Catalogues ship as both YAML
+# (human-edited) and JSON (imported by `make data`), so a host without PyYAML
+# still runs: the loaders fall back to the bundled .json files.
+dependencies = []
+
+[project.optional-dependencies]
+config = ["PyYAML>=6.0"]      # only needed to edit/parse the YAML sources
+pcap = ["scapy>=2.5"]          # richer capture parsing; tcpdump fallback needs nothing
+dev = ["pytest>=7.4", "pytest-cov>=4", "ruff>=0.4", "mypy>=1.8", "PyYAML>=6.0"]
+
+[project.scripts]
+netmap = "netmap.cli:main"
+
+[project.urls]
+Documentation = "https://example.invalid/netmap/docs"
+Source = "https://example.invalid/netmap"
+
+[tool.setuptools.packages.find]
+include = ["netmap*"]
+
+[tool.setuptools.package-data]
+netmap = ["refs/*.yaml", "web/static/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 130
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "C4", "SIM"]
+ignore = ["E501", "B008", "SIM105", "SIM108"]
+
+[tool.ruff.lint.per-file-ignores]
+"netmap/ports.py" = ["E501"]
+"netmap/refs/*.yaml" = ["ALL"]
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
+warn_unused_ignores = false
+follow_imports = "silent"

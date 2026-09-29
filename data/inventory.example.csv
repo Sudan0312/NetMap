@@ -1,0 +1,14 @@
+ip,hostname,role,os,criticality,tier,vendor,model,asset_tag,serial,tags,owner,last_patch_date,zone,vlan
+10.0.0.1,fw-edge-01,perimeter,PAN-OS,5,0,Palo Alto,PA-3220,FW-0155,01550001234,"managed,perimeter",network-eng,2024-02-11,wan-edge,10
+10.0.0.2,fw-edge-02,perimeter,PAN-OS,5,0,Palo Alto,PA-3220,FW-0156,01550009999,"managed,perimeter",network-eng,2025-06-02,wan-edge,10
+10.0.1.1,core-sw-01,core,Cisco NX-OS,5,0,Cisco,Nexus 9336C,SW-1001,SJC1234,"managed,core",network-eng,2023-09-14,core,100
+10.0.1.2,core-sw-02,core,Cisco NX-OS,5,0,Cisco,Nexus 9336C,SW-1002,SJC1235,"managed,core",network-eng,2023-09-14,core,100
+10.0.2.1,dist-sw-01,distribution,Cisco IOS-XE,4,1,Cisco,Catalyst 9300,SW-2001,FCW2001,"managed",network-eng,2024-03-30,core,100
+10.20.110.11,web-01.contoso.example,public web tier,Ubuntu 20.04,5,1,Canonical,,SRV-11011,, "managed,tier1",app-ops,2025-01-22,server-farm,110
+10.20.110.31,dc-01.contoso.example,domain controller,Windows Server 2019,5,0,Microsoft,,SRV-11031,, "managed,tier0",identity,2025-08-12,server-farm,110
+10.20.110.32,dc-02.contoso.example,domain controller,Windows Server 2012 R2,5,0,Microsoft,,SRV-11032,, "managed,tier0,pending-upgrade",identity,2022-07-19,server-farm,110
+10.20.120.21,db-01.contoso.example,database,RHEL 8,5,0,RedHat,,SRV-12021,, "managed,pci,tier0",dbas,2025-05-06,server-farm,120
+10.20.130.5,nas-01.contoso.example,primary storage,ONTAP 9.7,5,0,NetApp,FAS8200,STOR-005,, "managed,tier0",storage,2023-04-18,storage,130
+10.20.110.41,esx-01.contoso.example,compute host,VMware ESXi 6.7,5,0,VMware,,ESX-041,, "managed,tier0",virtualisation,2022-11-04,server-farm,110
+10.30.2.201,prn-hr-01,printer,HP SmartStream,2,3,HP,LaserJet M630,PRT-201,, "print",facilities,2021-05-01,access,202
+10.40.1.51,cam-l4-north,surveillance,VideoOS,2,3,Hikvision,DS-2CD2T47G2,CAM-051,, "physical-security",facilities,,iot,300

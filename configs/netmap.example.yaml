@@ -1,0 +1,159 @@
+# NetMap operator configuration.
+#
+# Copy to configs/netmap.yaml and edit. Every key shown here is a default, so
+# this file is also the reference for `netmap -c my.yaml ...` overrides
+# (`--set scan.tcp_ports=top` works for anything not written down).
+#
+# Secrets: any string may be "${ENV_VAR}"; keep SNMP/SSH credentials in the
+# environment, never in this file. `NETMAP_SNMP_RO` is read by the default SNMP
+# settings below.
+
+profile: enterprise
+operator: network-sec@example.com
+
+# ---------------------------------------------------------------- permissions
+# NetMap sends real packets. This block is what the CLI checks before it will
+# touch a live network, and it is recorded verbatim into every snapshot so a
+# report can prove who authorised what.
+authorization:
+  confirmed: false            # true only with written permission for these ranges
+  signed_by: "CAB-2026-114"   # who approved it (ticket, change id, manager)
+  scope:
+    - 10.0.0.0/8
+    - 172.16.0.0/12
+    - 192.168.0.0/16
+  valid_until: "2026-12-31"
+  note: "Read-only discovery. No exploitation, no password testing, no writes."
+
+scan:
+  mode: live                  # live | lab | import
+  targets: []                 # CIDRs, ranges (10.0.4.1-60), single IPs, names
+  exclude:
+    - 10.0.0.1                # the scanning host itself
+    - 10.20.110.0/28          # already covered by another tool
+  max_hosts: 4096
+  # Anything that is not RFC1918/loopback/link-local is refused unless this is
+  # true *and* the address appears in authorization.scope above.
+  allow_external: false
+  ping:
+    enabled: true
+    strategy: auto            # auto | icmp | tcp | none (icmp needs raw sockets)
+    timeout: 1.0
+    tcp_probe_ports: [22, 80, 443, 445, 3389]
+  tcp_ports: top              # "top", "1-1024", "22,80,443,3389,8443"
+  udp_ports: [53, 67, 68, 123, 161, 162, 514, 1900]
+  concurrency: 180
+  rate_pps: 350               # hard packet-per-second limiter
+  retries: 1
+  timeouts: {connect: 0.75, read: 1.25, write: 1.0, snmp: 1.2, dns: 1.0}
+  banner_grab: true
+  banner_bytes: 1024
+  tls_probe: true             # handshake + certificate parsing (no crypto attacks)
+  dns_ptr: true
+  dns_forward: false          # A/AAAA lookup for names discovered via PTR
+  resolve_names: true
+  arp:
+    enabled: true
+    source: auto              # auto | proc | ip-neigh | file
+    file: null                # exported `arp -a` / `ip neigh` dump
+  snmp:
+    enabled: true
+    version: auto             # v1 | v2c | v3 | auto
+    communities: ["public", "${NETMAP_SNMP_RO}"]   # read-only strings only
+    v3:
+      enabled: false
+      user: "${NETMAP_SNMP_V3_USER}"
+      auth_proto: SHA
+      auth_pass: "${NETMAP_SNMP_V3_AUTH}"
+      priv_proto: AES128
+      priv_pass: "${NETMAP_SNMP_V3_PRIV}"
+    port: 161
+    walk_max_repetitions: 40
+    walk_max_rows: 600
+    enumerate: [system, interfaces, neighbors, arp, fdb, routes, vlans, governance]
+  capture:
+    enabled: false            # passive LLDP/CDP harvest; needs tcpdump or scapy
+    interface: null           # null = every up interface
+    seconds: 25
+
+# lab mode only: which synthetic network to build for demos/tests
+lab:
+  size: medium                # small | medium | large
+  seed: 7
+  include_risks: true         # false generates a boring, clean network
+
+zones:
+  - {name: wan-edge,     trust: untrusted,   vlans: [10],        cidrs: [], description: "Internet-facing / perimeter"}
+  - {name: dmz,          trust: dmz,         vlans: [20],        cidrs: [], description: "Public services"}
+  - {name: core,         trust: internal,    vlans: [100],       cidrs: [], description: "Core + distribution switching"}
+  - {name: server-farm,  trust: restricted,  vlans: [110, 120],  cidrs: [], description: "Application and database tiers"}
+  - {name: storage,      trust: restricted,  vlans: [130],       cidrs: [], description: "SAN/NAS and backup targets"}
+  - {name: management,   trust: out_of_band, vlans: [999],       cidrs: [], description: "BMC / device management"}
+  - {name: access,       trust: internal,    vlans: [200, 210],  cidrs: ["10.30.0.0/16"], description: "User access + wireless"}
+  - {name: iot,          trust: internal,    vlans: [300],       cidrs: ["10.40.0.0/16"], description: "Cameras, badges, AV, BMS"}
+  - {name: guest,        trust: untrusted,   vlans: [400],       cidrs: ["10.50.0.0/16"], description: "BYOD / guest"}
+
+inventory:
+  file: data/inventory.example.csv   # CMDB export; missing rows => undocumented
+  key: ip
+  strict: false
+  required_tags: [managed]
+
+topology:
+  infer_l3_via_routing: true         # next-hop rows become links
+  min_confidence: 0.4                # drop noisy neighbour entries below this
+  treat_same_subnet_as_adjacency: false  # true = shared L2 counts as a link
+  collapse_access_layers: true
+
+risk:
+  rules_files: []                    # extra/override catalogues, applied in order
+  disabled: []                       # e.g. [NM-SNMP-002]
+  only: []                           # restrict to ids or families, e.g. [exposure]
+  min_severity: info
+  severity_overrides: {}             # {NM-PLN-002: low}
+  max_findings_per_rule: 0           # 0 = unlimited; use 25 to keep reports readable
+  fail_on: critical                  # `netmap ci` default
+  thresholds:
+    expiring_cert_days: 30
+    unknown_device_max_ports: 12
+    high_criticality: 4
+    stale_firmware_days: 730
+    recent_reboot_minutes: 10
+    min_subnet_redundancy: 2
+    max_undocumented_pct: 5.0
+  # Accepted risk: findings stay in the report, flagged and excluded from the score.
+  exceptions:
+    - rule: NM-PLN-001
+      target: 10.0.0.14
+      status: accepted
+      reason: "Vendor appliance; telnet disabled in firmware 2.0 (Q3 change window)"
+      expires: "2026-12-31"
+      approved_by: "NOC lead"
+
+report:
+  title: "Enterprise Network Topology & Risk Report"
+  output_dir: out
+  formats: [json, md, html]          # json,md,csv,html,sarif,cef,dot,txt
+  redact: true                       # mask MACs/serials in human-readable output
+  svg: true                          # embed the topology picture in HTML
+  static_html: true
+  top_n: 25
+  max_findings_per_device: 40
+  baseline: null                     # out/lab-snapshot.json for drift sections
+  language: en
+
+web:
+  host: 0.0.0.0
+  port: 8080
+  snapshot: null                     # serve an existing snapshot read-only
+  auth_token: "${NETMAP_WEB_TOKEN}"  # required on every request when set
+
+integrations:
+  siem:
+    format: cef                      # cef | jsonl
+    endpoint: null                   # https://collector.example/logs
+    dry_run: true
+  ticket:
+    system: null                     # jira | servicenow | github
+    project: NETMAP
+    min_severity: high

@@ -1,0 +1,952 @@
+# NetMap built-in risk catalogue.
+#
+# Rules are data, not code: `netmap rules validate` checks every operator name
+# and arity, and `netmap rules test` runs the fixtures in tests/fixtures so a
+# rule change cannot silently invert the logic.
+#
+# schema:
+#   id, title, version, family, scope(device|link|network), severity
+#   when/unless           predicate trees
+#   foreach               emit one finding per matching list item
+#   impact/likelihood     0-10; score = impact*likelihood/10 (severity may be implied)
+#   escalate[]            context-dependent severity bump (exposure, criticality...)
+#   evidence[]            strings with {device.ip} / {service.port} / {link.id} paths
+#   remediation, refs{cis,nist,cwe,attack,owasp}, tags, confidence
+
+meta:
+  name: netmap-builtin
+  version: "1.4"
+  description: Enterprise discovery-driven exposure, segmentation, lifecycle and architecture checks
+  author: NetMap reference catalogue
+  requires: ">=1.0"
+
+rules:
+  # ------------------------------------------------------------------ plaintext / management exposure
+  - id: NM-PLN-001
+    title: Telnet enabled for device administration
+    version: "3"
+    family: exposure
+    scope: device
+    tags: [plaintext, management, cve-free]
+    when: {port_open: 23}
+    severity: high
+    impact: 8
+    likelihood: 8
+    evidence:
+      - "tcp/23 answers on {device.ip}"
+      - "banner: {service.banner}"
+    description: >-
+      Telnet transmits credentials and configuration in cleartext. Anyone on a
+      spanning port, a mirrored tap, or a compromised neighbour host can capture
+      operator logins and then change device configuration.
+    remediation: >-
+      Disable telnet (`no transport input telnet` / `transport input ssh only`),
+      enable SSH with RSA >=2048-bit keys, and restrict vty access to the
+      management ACL.
+    refs: {cwe: CWE-319, cis: "12.5", nist: "SC-8,TC-A(1)", attack: "T1040", owasp: "A02"}
+    escalate:
+      - {when: {"==": [{path: device.trust}, untrusted]}, severity: critical, reason: reachable from an untrusted zone}
+      - {when: {">=": [{path: device.criticality}, 4]}, severity: critical, reason: device is business-critical}
+
+  - id: NM-PLN-002
+    title: FTP used for file transfer
+    version: "2"
+    family: exposure
+    scope: device
+    when: {port_open: [21, 2121]}
+    severity: medium
+    impact: 7
+    likelihood: 6
+    evidence:
+      - "{service.port}/tcp banner: {service.banner}"
+    description: FTP sends credentials and payload unencrypted and is frequently left with anonymous access enabled.
+    remediation: Replace with SFTP/FTPS, or restrict to a dedicated management VLAN with an ACL.
+    refs: {cwe: CWE-319, cis: "3.10", nist: "SC-8", attack: "T1071.002"}
+    escalate:
+      - {when: {regex: [{path: service.banner}, "anonymous"]}, severity: high, reason: anonymous login advertised}
+
+  - id: NM-PLN-003
+    title: Cleartext HTTP management interface
+    version: "3"
+    scope: device
+    family: exposure
+    when:
+      and:
+        - {or: [{"==": [{path: service.name}, http]}, {"==": [{path: service.name}, http-alt]}, {"==": [{path: service.name}, http-proxy]}]}
+        - {in: [{path: service.port}, [80, 81, 8000, 8080, 8008, 8888, 3000, 5000, 8090]]}
+        - or:
+            - {path: device.is_network_infrastructure}
+            - {regex: [{path: device.sys_descr}, "Switch|Router|Firewall|Access Point|BMC|IPMI|Printer|Camera"]}
+    foreach: {over: device.services, where: {"==": [{path: service.encryption}, none]}}
+    severity: high
+    impact: 8
+    likelihood: 6
+    evidence:
+      - "{device.label} serves a management UI over http on {service.port}/tcp"
+      - "server banner: {service.product} {service.version}"
+    description: Administrative credentials and session cookies for this device cross the network unencrypted, and CSRF against a cleartext admin UI is trivial from any user segment.
+    remediation: Enable HTTPS on the device, redirect http->https, and limit management listeners to the OOB/management VLAN.
+    refs: {cwe: CWE-319, cis: "16.6", nist: "SC-8,SC-23", attack: "T1071.001"}
+
+  - id: NM-PLN-004
+    title: WinRM over plaintext HTTP (5985)
+    version: "1"
+    scope: device
+    family: exposure
+    when: {port_open: 5985}
+    severity: medium
+    impact: 7
+    likelihood: 5
+    evidence: ["5985/tcp open on {device.ip}", "Negotiate auth over cleartext HTTP"]
+    description: Port 5985 accepts Windows Remote Management with Negotiate authentication. Basic/NTLM hashes are exposed to the segment, and this is the standard lateral-movement path after an initial foothold.
+    remediation: Restrict to HTTPS (5986) with a valid certificate, or bind the listener to the management VLAN only via the WinRM service ACL.
+    refs: {cwe: CWE-319, cis: "18.9", nist: "CM-7", attack: "T1021.006"}
+
+  # ------------------------------------------------------------------ SNMP
+  - id: NM-SNMP-001
+    title: Device answers the default read community
+    version: "4"
+    family: exposure
+    scope: device
+    when:
+      and:
+        - path: device.snmp.readable
+        - path: device.snmp.default_community
+    severity: high
+    impact: 9
+    likelihood: 8
+    confidence: 0.9
+    evidence:
+      - "SNMP {device.snmp.version} GET with a default community returned sysDescr"
+      - "sysDescr: {device.sys_descr}"
+    description: A guessable read community discloses topology, running configuration, interface counters, ARP/FDB tables and (on some vendors) credentials. It is also the map an attacker uses to find the next hop.
+    remediation: Replace with SNMPv3 authPriv, or set a long random RO community plus an ACL limiting source addresses to the pollers, and remove the write community.
+    refs: {cwe: CWE-1392, cis: "12.2", nist: "CM-6,AC-3", attack: "T1016"}
+    escalate:
+      - {when: {path: device.is_network_infrastructure}, severity: critical, reason: "network infrastructure exposes full config via SNMP"}
+      - {when: {path: device.exposed_to_wan}, severity: critical, reason: "device is reachable from outside the network"}
+
+  - id: NM-SNMP-002
+    title: SNMPv1/v2c in use (no v3 privacy)
+    version: "2"
+    scope: device
+    family: exposure
+    when:
+      and:
+        - {"==": [{path: device.snmp.readable}, true]}
+        - {in: [{path: device.snmp.version}, ["v1", "v2c"]]}
+    severity: medium
+    impact: 6
+    likelihood: 6
+    evidence: ["device responded to SNMP {device.snmp.version}"]
+    description: v1/v2c authenticate with a community string sent in clear text on every request; they can neither protect confidentiality nor resist spoofed traps.
+    remediation: Migrate monitoring to SNMPv3 authPriv (SHA/AES) or replace polling with gNMI/NETCONF over TLS where the platform supports it.
+    refs: {cwe: CWE-326, cis: "12.2", nist: "SC-8", attack: "T1040"}
+
+  - id: NM-SNMP-003
+    title: Write community appears to be 'private'
+    version: "2"
+    scope: device
+    family: exposure
+    when: {and: [{path: device.config.snmp_write_community_rw}, {"!=": [{path: device.snmp.version}, "v3"]}]}
+    severity: high
+    impact: 9
+    likelihood: 4
+    confidence: 0.7
+    description: NetMap only issues read requests, but a device that also answers reads with the classic write community normally carries that same RW string in its config, which permits an attacker to alter ACLs, add local users, or point traffic at themselves.
+    remediation: Remove the RW community, or set it to a random value and bind `snmp-server view`/access-class to the collector IPs.
+    evidence:
+      - "configuration audit shows an RW community equal to the default write string"
+      - "SNMP {device.snmp.version} read community accepted from the scanner"
+    refs: {cwe: CWE-1392, cis: "12.2", nist: "AC-3", attack: "T1557"}
+
+  - id: NM-SNMP-004
+    title: SNMP reachable from user segments
+    version: "1"
+    scope: device
+    family: segmentation
+    when:
+      and:
+        - {port_open: [161, 162]}
+        - {">=": [{max_trust_distance: null}, 2]}
+    severity: high
+    impact: 7
+    likelihood: 7
+    evidence:
+      - "udp/161 answered from the scan source in zone {device.zone}"
+      - "reachability from untrusted: {device.reachability.untrusted.reachable}"
+    description: SNMP should be reachable only from pollers. When the access layer can reach it, any workstation can enumerate the whole network.
+    remediation: Apply a management-plane ACL (`access-class` on the SNMP community, `snmp-server` view scoping) and control-plane policing to rate-limit/redirect non-poller sources.
+    refs: {cwe: CWE-284, cis: "9.2", nist: "AC-4,SC-7", attack: "T1018"}
+
+  # ------------------------------------------------------------------ TLS / certificates
+  - id: NM-TLS-001
+    title: Deprecated TLS version negotiated
+    version: "3"
+    scope: device
+    family: crypto
+    when:
+      and:
+        - {regex: [{path: service.config.tls_version}, "SSL|TLSv1($|\\.|\\s)|TLSv1\\.0|TLSv1\\.1"]}
+    foreach: {over: device.services, where: {"!=": [{path: service.config.tls_version}, null]}}
+    severity: high
+    impact: 8
+    likelihood: 6
+    evidence:
+      - "{service.port}/tcp negotiated {service.config.tls_version} with {service.config.tls_cipher}"
+    description: TLS 1.0/1.1 and SSLv3 are deprecated by every major standard and fail PCI DSS 4.0 requirement 4.2.1; CBC padding and downgrade handling in these versions have practical attacks against them.
+    remediation: Set `minprocversion`/`ssl protocol` to TLSv1.2 minimum, prefer TLSv1.3, and disable RSA key-exchange and non-AEAD cipher suites.
+    refs: {cwe: CWE-326, cis: "13.1", nist: "SC-8,SC-13", attack: "T1557.004"}
+
+  - id: NM-CERT-001
+    title: Expired certificate on a live service
+    version: "2"
+    scope: device
+    family: crypto
+    foreach: {over: device.services, where: {"<": [{path: service.certificate.days_left}, 0]}}
+    when: {"<": [{path: service.certificate.days_left}, 0]}
+    severity: high
+    impact: 7
+    likelihood: 9
+    evidence:
+      - "{service.port}/tcp certificate expired at {service.certificate.not_after}"
+      - "issuer {service.certificate.issuer_cn}, subject {service.certificate.subject_cn}"
+    description: Clients either fail closed (outage) or are retrained to click through warnings, which is exactly the condition a MITM position needs.
+    remediation: Renew from the internal CA (or ACME) and add the expiry date to the CMDB so it is monitored; automate renewal for appliances that support it.
+    refs: {cwe: CWE-298, cis: "13.2", nist: "SC-12", attack: "T1557"}
+
+  - id: NM-CERT-002
+    title: Certificate expires within the warning window
+    version: "2"
+    scope: device
+    family: crypto
+    foreach: {over: device.services, where: {and: [{">=": [{path: service.certificate.days_left}, 0]}, {"<=": [{path: service.certificate.days_left}, 30]}]}}
+    when: {"<=": [{path: service.certificate.days_left}, 30]}
+    severity: medium
+    impact: 5
+    likelihood: 8
+    evidence: ["{service.port}/tcp certificate expires in {service.certificate.days_left} days ({service.certificate.not_after})"]
+    description: Short-fuse expiry on device certificates is the most common cause of unexpected management-UI and VPN outages.
+    remediation: Renew now; where the vendor cannot automate renewal, subscribe the serial number to expiry monitoring.
+    refs: {cwe: CWE-298, cis: "13.2", nist: "SC-12"}
+
+  - id: NM-CERT-003
+    title: Self-signed certificate on a service used for administration
+    version: "2"
+    scope: device
+    family: crypto
+    foreach: {over: device.services, where: {"==": [{path: service.certificate.self_signed}, true]}}
+    when: {"==": [{path: service.certificate.self_signed}, true]}
+    severity: low
+    impact: 4
+    likelihood: 6
+    evidence: ["{service.port}/tcp presents self-signed certificate {service.certificate.subject_cn}"]
+    description: Self-signed device certificates train users to bypass trust errors; on VPN and SSO endpoints they materially weaken MITM resistance.
+    remediation: Issue from the corporate CA (or ACME with an internal DNS-01 challenge) and pin the public key on the client profile.
+    refs: {cwe: CWE-295, cis: "13.2", nist: "SC-12(3)"}
+
+  - id: NM-CERT-004
+    title: Certificate hostname does not match the presented name
+    version: "1"
+    scope: device
+    family: crypto
+    foreach: {over: device.services, where: {"==": [{path: service.certificate.hostname_match}, false]}}
+    when: {"==": [{path: service.certificate.hostname_match}, false]}
+    severity: medium
+    impact: 6
+    likelihood: 5
+    evidence:
+      - "requested {device.hostname}; certificate names {service.certificate.san}"
+      - "name source: {service.certificate.san_source}"
+    description: A name mismatch means the certificate cannot be validated as belonging to this endpoint, and strict clients will refuse it or be configured to ignore the error.
+    remediation: Reissue with the DNS name and IP SANs the clients actually use.
+    refs: {cwe: CWE-295, nist: "IA-5(2)"}
+
+  - id: NM-CERT-005
+    title: Weak certificate key or cipher suite
+    version: "2"
+    scope: device
+    family: crypto
+    foreach: {over: device.services, where: {or: [{"<": [{path: service.certificate.key_bits}, 2048]}, {"==": [{path: service.config.weak_cipher}, true]}]}}
+    when: {or: [{"<": [{path: service.certificate.key_bits}, 2048]}, {"==": [{path: service.config.weak_cipher}, true]}]}
+    severity: medium
+    impact: 7
+    likelihood: 4
+    evidence:
+      - "{service.port}/tcp negotiated {service.config.tls_cipher} with a {service.certificate.key_bits}-bit key"
+    description: RC4/3DES/NULL/EXPORT suites and sub-2048-bit RSA keys are within reach of commodity hardware or suffer known biases.
+    remediation: Restrict cipher suites to AEAD (ECDHE+AES-GCM/ChaCha20), RSA >=2048 or EC P-256, and disable compression and renegotiation.
+    refs: {cwe: CWE-327, cis: "13.1", nist: "SC-13"}
+
+  # ------------------------------------------------------------------ remote access / admin services
+  - id: NM-RMT-001
+    title: IPMI/BMC management interface exposed
+    version: "3"
+    scope: device
+    family: exposure
+    when: {or: [{port_open: [623, 4011, 8500, 16992]}, {port_open: [623, "udp"]}]}
+    severity: high
+    impact: 9
+    likelihood: 6
+    evidence:
+      - "{service.port}/{service.protocol} answers with {service.product}"
+      - "cipher suite privilege: {service.config.ipmi_cipher_level}"
+    foreach: {over: device.services, where: {in: [{path: service.port}, [623, 4011, 8500, 16992]]}}
+    description: BMC/iDRAC/iLO/IPMI interfaces allow power control and virtual media; default credentials plus cipher-suite 0/1 make them among the highest-impact exposed services on a network.
+    remediation: Move all BMC addresses to the OOB management VLAN, disable IPMI-over-LAN where not needed, enforce cipher suite 17, and rotate default accounts.
+    refs: {cwe: CWE-1392, cis: "16.10", nist: "AC-3,AC-4", attack: "T1190", owasp: "A05"}
+
+  - id: NM-RMT-002
+    title: Remote desktop service exposed to non-management segments
+    version: "2"
+    scope: device
+    family: exposure
+    when:
+      and:
+        - {port_open: [3389, 4899, 5500]}
+        - {">=": [{max_trust_distance: null}, 1]}
+    severity: high
+    impact: 8
+    likelihood: 6
+    evidence: ["3389/tcp open on a {device.device_type} in zone {device.zone}"]
+    description: RDP reachable outside the administrator silo widens the credential-brute-force surface and is the most common interactive-access foothold in ransomware intrusions.
+    remediation: Require VPN + device trust for RDP, enable NLA, and block 3389 at the segment ACL except from jump hosts.
+    refs: {cwe: CWE-284, cis: "9.1", nist: "AC-17", attack: "T1021.001"}
+
+  - id: NM-RMT-003
+    title: VNC listening without a tunnel
+    version: "2"
+    scope: device
+    family: exposure
+    when: {port_open: [5900, 5901, 5902, 5903, 5800, 5801, 2105]}
+    severity: high
+    impact: 8
+    likelihood: 7
+    foreach: {over: device.services, where: {in: [{path: service.port}, [5900, 5901, 5902, 5903, 5800, 5801, 2105]]}}
+    evidence: ["{service.port}/tcp: {service.banner}"]
+    description: Many VNC builds on network gear and lab hosts default to an 8-character password limit and no encryption; screen contents then traverse the LAN in cleartext.
+    remediation: Tunnel VNC over SSH/IPsec, or replace with RDP/HTML5 console on the management VLAN.
+    refs: {cwe: CWE-319, cis: "9.1", attack: "T1021.005"}
+
+  - id: NM-RMT-004
+    title: Device administration reachable without a jump host (management on WAN-facing interface)
+    version: "1"
+    scope: device
+    family: segmentation
+    when:
+      and:
+        - {path: device.exposed_to_wan}
+        - {port_open: [22, 23, 80, 443, 161, 623, 3389, 830, 10000, 15672, 5985]}
+    foreach: {over: device.services, where: {in: [{path: service.port}, [22, 23, 80, 443, 161, 623, 3389, 830, 10000, 15672, 5985]]}}
+    severity: critical
+    impact: 9
+    likelihood: 7
+    evidence: ["{service.port}/{service.protocol} on {device.label}, which is exposed to the WAN zone"]
+    description: Administrative services must never be offered on an internet-facing interface; every CVE for the device's management stack becomes an unauthenticated internet entry point.
+    remediation: Bind management listeners to the OOB interface, and serve remote administration only through the bastion/VPN with device posture checks.
+    refs: {cwe: CWE-284, cis: "12.6", nist: "AC-17(1)", attack: "T1190"}
+
+  - id: NM-RMT-005
+    title: Unauthenticated container/engine management API
+    version: "2"
+    scope: device
+    family: exposure
+    when: {or: [{port_open: [2375, 4243]}, {banner_regex: "^(GET /version|Docker)"}]}
+    severity: critical
+    impact: 10
+    likelihood: 6
+    evidence: ["2375/tcp on {device.ip} responds without TLS or client certificates"]
+    description: An unauthenticated Docker/socket API grants container creation with the host filesystem mounted, i.e. immediate root on the hypervisor or node.
+    remediation: Bind the daemon socket to localhost or systemd socket activation with TLS + client cert auth; place swarm/Kubernetes control planes behind the management network.
+    refs: {cwe: CWE-306, cis: "16.9", nist: "CM-7", attack: "T1610", owasp: "A01"}
+
+  - id: NM-RMT-006
+    title: Data store exposed without authentication
+    version: "2"
+    scope: device
+    family: exposure
+    when:
+      or:
+        - {banner_regex: "(?i)-NOAUTH|NOAUTH Authentication required|redis_mode|Memcached|mongodb|You Know, for Search|_cat"}
+        - {and: [{port_open: [6379, 11211, 27017, 9200]}, {"==": [{path: service.encryption}, none]}]}
+    foreach: {over: device.services, where: {in: [{path: service.port}, [6379, 11211, 27017, 9200, 5984]]}}
+    severity: critical
+    impact: 10
+    likelihood: 5
+    evidence: ["{service.port}/tcp -> {service.product} ({service.banner})"]
+    description: Redis/Memcached/MongoDB/Elasticsearch deployed with default settings accept commands from anyone who can reach the port; these have been the substrate of both crypto-miner outbreaks and mass data exfiltration.
+    remediation: Bind to localhost/VRF, require AUTH/TLS, and add an ACL so only the application tier can reach the port.
+    refs: {cwe: CWE-306, cis: "16.9", nist: "AC-3", attack: "T1190", owasp: "A01"}
+
+  - id: NM-DB-001
+    title: Database port reachable from the user access zone
+    version: "1"
+    scope: device
+    family: segmentation
+    when:
+      and:
+        - {port_open: [1433, 1521, 3306, 5432, 27017, 1521, 33060, 1434]}
+        - {reachable_from: [internal]}
+        - {not: {path: device.reachability.internal.filtered}}
+    foreach: {over: device.services, where: {in: [{path: service.port}, [1433, 1521, 3306, 5432, 27017, 33060, 1434]]}}
+    severity: high
+    impact: 9
+    likelihood: 5
+    evidence: ["{service.port}/tcp on {device.label} is reachable from {device.reachability.internal.path}"]
+    description: End-user workstations have no reason to speak SQL. Leaving the database tier reachable from the access layer turns any workstation compromise into a direct data-theft path.
+    remediation: >-
+      Enforce a three-tier model: only application hosts may reach the DB ports, enforced by the fabric policy/ACL, not by host firewall alone.
+    refs: {cwe: CWE-284, cis: "9.2,16.5", nist: "AC-4,SC-7", attack: "T1190"}
+
+  - id: NM-SMB-001
+    title: SMB exposed outside the file/server tiers
+    version: "2"
+    scope: device
+    family: exposure
+    when:
+      and:
+        - {port_open: [445, 139]}
+        - {not: {in: [{path: device.device_type}, ["file", "server", "workstation", "storage", "hypervisor", "printer"]]}}
+    severity: high
+    impact: 8
+    likelihood: 6
+    evidence: ["{service.port}/tcp ({service.product}) open on a {device.device_type}"]
+    description: SMB on a router, switch, camera or appliance is nearly always legacy file sharing or an unexpected service (e.g. embedded NAS features), and it has a long history of remote code execution.
+    remediation: Disable SMB/NetBIOS on non-file devices; where a device needs it, restrict to a dedicated storage VLAN.
+    refs: {cwe: CWE-284, cis: "9.2", nist: "CM-7", attack: "T1021.002"}
+
+  # ------------------------------------------------------------------ web surface
+  - id: NM-WEB-001
+    title: Administrative or debug endpoint exposed over HTTP
+    version: "2"
+    scope: device
+    family: exposure
+    when: {count: {path: service.http.exposed_admin_paths}}
+    foreach: {over: device.services, where: {"!=": [{path: service.http.exposed_admin_paths}, null]}}
+    severity: high
+    impact: 8
+    likelihood: 6
+    evidence:
+      - "paths answering on {service.port}/tcp: {service.http.exposed_admin_paths}"
+    description: Admin consoles, package managers and debug endpoints found by URL scanning are the leading initial-access vector for exposed enterprise apps, and crawlers index them within hours.
+    remediation: Remove the endpoint from the proxy, or gate it behind the management network plus MFA; never rely on obscurity or a /login page alone.
+    refs: {cwe: CWE-200, cis: "16.6", nist: "AC-3", attack: "T1592", owasp: "A01"}
+
+  - id: NM-WEB-002
+    title: Sensitive file disclosed by the web service
+    version: "2"
+    scope: device
+    family: exposure
+    when: {count: {path: service.http.leaks}}
+    foreach: {over: device.services, where: {"!=": [{path: service.http.leaks}, null]}}
+    severity: critical
+    impact: 10
+    likelihood: 7
+    evidence: ["{service.port}/tcp served content matching {service.http.leaks}"]
+    description: .env, .git/config, phpinfo() and actuator endpoints return secrets, source paths and internal addresses; they enable immediate account takeover or further compromise.
+    remediation: Block dot-files and framework endpoints at the web server, remove the artefacts from the deployment, and rotate anything that has been exposed.
+    refs: {cwe: CWE-538, cis: "16.6", nist: "SI-12", attack: "T1592.003", owasp: "A01"}
+
+  - id: NM-WEB-003
+    title: Missing browser-protection response headers
+    version: "1"
+    scope: device
+    family: hardening
+    when:
+      and:
+        - {path: service.http.security_headers}
+        - {not: {path: service.http.security_headers.hsts}}
+    foreach: {over: device.services, where: {"==": [{path: service.encryption}, tls]}}
+    severity: low
+    impact: 4
+    likelihood: 6
+    evidence: ["{service.port}/tcp headers: {service.http.headers}"]
+    description: Without HSTS (and frame/CSP protections) a user on this service can be silently downgraded or framed, which is the standard companion to a network-position attack.
+    remediation: >-
+      Add `Strict-Transport-Security: max-age=31536000; includeSubDomains; preload`, `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY` and a restrictive CSP.
+    refs: {cwe: CWE-693, cis: "16.6", nist: "SC-8", owasp: "A05"}
+
+  # ------------------------------------------------------------------ infrastructure services
+  - id: NM-INF-001
+    title: Open DNS resolver
+    version: "2"
+    scope: device
+    family: exposure
+    when: {"==": [{service_config: ["recursion", 53]}, true]}
+    severity: high
+    impact: 7
+    likelihood: 7
+    evidence: ["udp/53 on {device.ip} answered a recursive query for an external name"]
+    description: An unrestricted resolver is both a reflection/amplification source and a way for malware to resolve domains through your infrastructure, defeating DNS logging and blocklists.
+    remediation: Restrict recursion to internal clients (`allow-recursion`, `view` statements) and bind the service to internal interfaces; publish authoritative data separately.
+    refs: {cwe: CWE-284, cis: "9.1", nist: "DN-2", attack: "T1584.002"}
+
+  - id: NM-INF-002
+    title: NTP monlist/amplification endpoint
+    version: "2"
+    scope: device
+    family: exposure
+    when: {"==": [{service_config: ["ntp_monlist", 123]}, true]}
+    severity: medium
+    impact: 6
+    likelihood: 8
+    evidence: ["udp/123 answered MODE 7 readvar with {device.config.ntp_monlist_count} list entries"]
+    description: The legacy NTP `monlist` request lets a small query return a large response (factor ~550x) and is a classic DDoS amplifier; it also discloses the client list.
+    remediation: Upgrade to ntpd 4.2.7p303+/chrony and keep `nopeer`/`noserve` restrictions for non-clients, or `restrict default nomodify notrap nopeer noquery`.
+    refs: {cwe: CWE-405, cis: "9.1", nist: "DN-5", attack: "T1498.002"}
+
+  - id: NM-INF-003
+    title: No centralised logging destination visible on device
+    version: "2"
+    scope: device
+    family: hardening
+    when:
+      and:
+        - {path: device.is_network_infrastructure}
+        - {"==": [{path: device.config.syslog}, null]}
+        - {not: {path: device.config.syslog_configured}}
+    severity: medium
+    impact: 6
+    likelihood: 6
+    confidence: 0.6
+    evidence:
+      - "no syslog evidence from SNMP HOST-RESOURCES data on {device.ip}"
+      - "device class: {device.device_type} ({device.vendor})"
+    description: Devices that log only to their local buffer give an intruder a clean way to erase their track record and leave the SIEM blind to config changes.
+    remediation: Configure `logging host` (and TLS transport where supported), verify with a test message, and forward trap/syslog to the collector over the management VRF.
+    refs: {cwe: CWE-1188, cis: "8.2", nist: "AU-6,AU-2", attack: "T1562.001"}
+
+  - id: NM-INF-004
+    title: No time source configured / clock skew suspected
+    version: "2"
+    scope: device
+    family: hardening
+    applies_to:
+      device_type: [switch, router, firewall, server, storage, database, directory, hypervisor, infra, out_of_band, load_balancer, wireless_controller, printer, camera, iot]
+    when:
+      and:
+        - {or: [{"==": [{path: device.config.ntp}, null]}, {"==": [{path: device.config.ntp}, false]}]}
+        - {or: [{">=": [{path: device.clock_skew_seconds}, 300]}, {"==": [{path: device.clock_skew_seconds}, null]}]}
+    severity: low
+    impact: 5
+    likelihood: 6
+    confidence: 0.5
+    evidence: ["no NTP daemon/association observed on {device.ip}; skew estimate {device.clock_skew_seconds}s"]
+    description: Skewed clocks break log correlation, Kerberos, certificate validation and TACACS+ session accounting, and are a common root cause of failed incident timelines.
+    remediation: Point the device at two internal NTP sources (which sync to authenticated stratum-1 upstreams) and use `ntp server x source Loopback0` style binding in the management VRF.
+    refs: {cwe: CWE-1188, cis: "8.4", nist: "AU-8,TP-1"}
+
+  - id: NM-INF-005
+    title: Legacy or banned service on a network device
+    version: "1"
+    scope: device
+    family: hardening
+    when: {port_open: [69, 79, 111, 137, 138, 512, 513, 514, 540, 871, 1026, 1112, 1524, 2049, 2105, 3283, 3543, 6000]}
+    foreach: {over: device.services, where: {in: [{path: service.port}, [69, 79, 111, 137, 138, 512, 513, 514, 540, 871, 1026, 1112, 1524, 2049, 2105, 3283, 6000]]}}
+    severity: medium
+    impact: 6
+    likelihood: 7
+    evidence: ["{service.port}/{service.protocol} ({service.name}) on a {device.device_type}"]
+    description: TFTP, RPCbind, r-services, NFS and X11 have no legitimate place on routers, switches and appliances; each is a known foothold and none of them authenticate well.
+    remediation: Disable the service in the device config; where TFTP is needed for boot/autoconfig, restrict with an ACL to the DHCP next-server pair and enable TFTP option 150 (timeout) with write disabled.
+    refs: {cwe: CWE-284, cis: "2.6,9.1", nist: "CM-7", attack: "T1021.005"}
+
+  # ------------------------------------------------------------------ lifecycle / patch
+  - id: NM-LC-001
+    title: Operating system/firmware past end of support
+    version: "3"
+    scope: device
+    family: lifecycle
+    when: {"==": [{path: device.lifecycle.status}, eol]}
+    severity: critical
+    impact: 9
+    likelihood: 8
+    evidence:
+      - "{device.raw.product} {device.os_version} - end of support {device.os_eol} ({device.os_eol_basis})"
+      - "sysDescr: {device.sys_descr}"
+    description: Out-of-support network software receives no security fixes, so every future CVE against that platform stays open forever on this device. This is the single most common audit finding on enterprise networks.
+    remediation: Schedule an upgrade to a supported train; if the platform cannot be upgraded, document a compensating control (dedicated management VRF, control-plane policing, feature removal) and a hardware refresh date.
+    refs: {cwe: CWE-1188, cis: "7.5,12.4", nist: "SI-2,MA-6", attack: "T1190"}
+    escalate:
+      - {when: {path: device.exposed_to_wan}, impact: 10, severity: critical, reason: "EOL software reachable from an untrusted zone"}
+
+  - id: NM-LC-002
+    title: End of support inside the next 180 days
+    version: "1"
+    scope: device
+    family: lifecycle
+    when: {and: [{"==": [{path: device.lifecycle.status}, eol-soon]}, {">=": [{path: device.lifecycle.days_left}, 0]}]}
+    severity: high
+    impact: 8
+    likelihood: 6
+    evidence: ["{device.raw.product} {device.os_version} reaches end of support on {device.os_eol} ({device.lifecycle.days_left} days)"]
+    description: An EOS date inside two planning cycles needs a change window already; upgrade projects on network infrastructure routinely slip past the date.
+    remediation: Raise the change record now, validate the target image on a lab unit first, and stage a rollback image.
+    refs: {cwe: CWE-1188, cis: "7.5", nist: "SI-2,MA-2"}
+
+  - id: NM-LC-003
+    title: Firmware older than the patch policy window
+    version: "2"
+    scope: device
+    family: lifecycle
+    when: {">=": [{path: device.firmware_age_days}, 730]}
+    severity: medium
+    impact: 6
+    likelihood: 6
+    confidence: 0.6
+    evidence:
+      - "reported version {device.os_version}; sysDescr/uptime implies {device.firmware_age_days} days since release-ish build"
+    description: Devices that have not been refreshed in two years carry a backlog of known-fixed vulnerabilities even when the platform itself is still supported.
+    remediation: Add the device to the quarterly patch ring and track the running version as a CMDB attribute so drift is visible.
+    refs: {cwe: CWE-1188, cis: "7.4", nist: "SI-2"}
+
+  - id: NM-LC-004
+    title: Embedded appliance with no vendor patch SLA
+    version: "1"
+    scope: device
+    family: lifecycle
+    when:
+      and:
+        - {in: [{path: device.device_type}, ["camera", "printer", "iot", "voip", "av", "building"]]}
+        - {path: device.has_web_management}
+    severity: medium
+    impact: 7
+    likelihood: 6
+    evidence: ["{device.device_type} at {device.ip} ({device.vendor} {device.model}) exposes a management UI with no patch history"]
+    description: Cameras, printers, badge readers and AV controllers ship web servers that go unpatched for their whole life; they are frequently the pivot used to reach corporate VLANs.
+    remediation: Put them on a restricted VLAN with no return path to user subnets, disable UPnP/WPS/cloud features, and replace EOL models; for cameras, disable RTSP authentication bypass and expose only over the media VLAN.
+    refs: {cwe: CWE-1391, cis: "12.7", nist: "CM-8,SI-2", attack: "T1190"}
+
+  # ------------------------------------------------------------------ unknown / asset
+  - id: NM-ASSET-001
+    title: Undocumented device on the network
+    version: "3"
+    scope: device
+    family: asset
+    when: {not: {path: device.documented}}
+    severity: medium
+    impact: 6
+    likelihood: 6
+    confidence: 0.75
+    evidence:
+      - "{device.ip} ({device.hostname}) type={device.device_type} vendor={device.vendor} not present in the inventory export"
+      - "open ports: {device.open_ports}"
+    description: Anything responding that the CMDB does not know about is either unmanaged, unpatched, or intentionally installed by someone. Each case needs an owner, an OS baseline and a patch plan.
+    remediation: Identify the owner from DHCP leases/switch port + MAC OUI, then either add it to inventory with a security baseline or remove it from the network.
+    refs: {cwe: CWE-1188, cis: "1.1,1.2", nist: "CM-8,CM-6", attack: "T1590.003"}
+    escalate:
+      - {when: {"==": [{path: device.trust}, restricted]}, severity: high, reason: undocumented host inside a restricted zone}
+      - {when: {and: [{not: {path: device.snmp.readable}}, {">=": [{path: device.open_port_count}, 6]}]}, severity: high, reason: no SNMP telemetry and multiple services}
+
+  - id: NM-ASSET-002
+    title: Device answers with default or vendor credentials hints
+    version: "2"
+    scope: device
+    family: exposure
+    when: {banner_regex: "(?i)(default password|password: *(admin|cisco|1234)|login: *admin|Administrator.*Login|Web UI.*Login|changeme|setup wizard)"}
+    severity: critical
+    impact: 10
+    likelihood: 7
+    evidence: ["banner matched a default-credential pattern: {device.sys_descr}"]
+    description: A freshly-unboxed device left in setup mode is the easiest authenticated access an attacker can obtain, and it is often reachable on a management VLAN that user traffic can touch.
+    remediation: Complete the security bootstrap (named admin account, MFA via TACACS+/RADIUS, SSH-only vty, console password) before the device is placed in production; enforce with a config-assessment rule.
+    refs: {cwe: CWE-1392, cis: "5.2", nist: "IA-5(1)", attack: "T1078.003", owasp: "A07"}
+
+  - id: NM-ASSET-003
+    title: Excessive attack surface on a single host
+    version: "2"
+    scope: device
+    family: hardening
+    when: {">=": [{count: {path: device.open_ports}}, 12]}
+    severity: medium
+    impact: 6
+    likelihood: 6
+    evidence:
+      - "{device.label} listens on {device.open_ports} ({device.open_port_count} tcp ports)"
+    description: Workstations and appliances with a dozen-plus listeners are usually running software nobody owns; every extra service is another CVE to track.
+    remediation: Reduce to the required services, and enforce the reduction with a configuration baseline or EDR policy.
+    refs: {cwe: CWE-284, cis: "4.8,9.1", nist: "CM-7", attack: "T1046"}
+
+  # ------------------------------------------------------------------ architecture / resilience
+  - id: NM-ARCH-001
+    title: >-
+      Single point of failure: only path to a critical device
+    version: "3"
+    scope: link
+    family: architecture
+    when:
+      and:
+        - {path: link.is_spof}
+        - {">=": [{max: [{path: src.criticality}, {path: dst.criticality}]}, 4]}
+    severity: high
+    impact: 8
+    likelihood: 5
+    evidence:
+      - "{link.src_label}:{link.src_interface} <-> {link.dst_label}:{link.dst_interface} is a bridge in the graph (removing it disconnects part of the network)"
+      - "derived from {link.derived_from}, confidence {link.confidence}"
+    description: One link carrying a critical device means one optic, one transceiver, one port or one line card outage becomes a business outage.
+    remediation: Add the parallel uplink (LACP/LAG or ECMP), and verify per-node hashing plus `lacp fast-timeout`/graceful restart behaviour.
+    refs: {cwe: CWE-1391, cis: "10.5", nist: "CP-10,SC-6"}
+
+  - id: NM-ARCH-002
+    title: Core/distribution device is an articulation point
+    version: "2"
+    scope: device
+    family: architecture
+    when:
+      and:
+        - {">=": [{path: device.isolation.devices}, 1]}
+        - {in: [{path: device.device_type}, ["router", "switch", "firewall", "wireless_controller", "load_balancer", "server", "storage"]]}
+    severity: high
+    impact: 8
+    likelihood: 4
+    escalate:
+      - {when: {">=": [{path: device.isolation.max_criticality}, 5]}, severity: critical, reason: "stranded devices include tier-0 systems"}
+      - {when: {">=": [{path: device.isolation.devices}, 12]}, severity: critical, reason: "a whole access layer sits behind this device"}
+    evidence:
+      - "if {device.label} is removed, {device.isolation.devices} device(s) lose every path onward ({device.isolation.groups} isolated group(s))"
+      - "most critical stranded: {device.isolation.sample}"
+      - "uplinks: {device.uplinks}"
+    description: Devices whose failure isolates other devices need a redundant pair (VRRP/HSRP, MEC/VPC, stack split) and an out-of-service maintenance path.
+    remediation: Pair the device (VSS/vPC/FabricMC/stack with dual supervisors), or move the attached servers to dual-homed access; document the failover test.
+    refs: {cwe: CWE-1391, cis: "10.5", nist: "CP-10,SC-6,SC-5"}
+
+  - id: NM-ARCH-003
+    title: Access switch without an uplink bundle
+    version: "1"
+    scope: device
+    family: architecture
+    when:
+      and:
+        - {"==": [{path: device.device_type}, switch]}
+        - {"==": [{count: {path: device.uplinks}}, 1]}
+        - {not: {path: device.uplink_is_bundle}}
+    severity: low
+    impact: 5
+    likelihood: 5
+    evidence: ["{device.label} has one uplink ({device.uplinks})"]
+    description: A single-homed access switch puts every attached user, phone, camera and AP behind one port and one optic.
+    remediation: Bring up the second link into a LACP bundle (or at minimum a standby path with STP guard tuned) and dual-home the wireless APs where the model allows.
+    refs: {cwe: CWE-1391, cis: "10.5", nist: "SC-6"}
+
+  - id: NM-ARCH-004
+    title: >-
+      Flat segment: no enforced boundary between trust levels
+    version: "2"
+    scope: device
+    family: segmentation
+    when:
+      and:
+        - {">=": [{max_trust_distance: null}, 2]}
+        - {not: {path: device.segmentation_enforced}}
+    severity: high
+    impact: 7
+    likelihood: 6
+    evidence:
+      - "{device.label} in {device.zone} ({device.trust}) is directly adjacent to {device.nearest_far_zone}"
+      - "no firewall/policy device appears between the two zones in the discovered graph"
+    description: When user, server and guest tiers share a broadcast domain or an unfiltered L3 path, one compromised laptop can reach domain controllers, databases and printers at line rate.
+    remediation: Introduce the enforcement point (VRF-lite with inter-VRF policy, firewall zones, or a fabric policy engine), then move hosts; document the intended east-west policy.
+    refs: {cwe: CWE-284, cis: "12.1,9.2", nist: "AC-4,SC-7,CM-6", attack: "T1018"}
+
+  - id: NM-ARCH-005
+    title: High-criticality device reachable from an untrusted zone
+    version: "2"
+    scope: device
+    family: segmentation
+    when:
+      and:
+        - {">=": [{path: device.criticality}, 4]}
+        - {reachable_from: [untrusted]}
+    severity: critical
+    impact: 9
+    likelihood: 6
+    evidence:
+      - "path from untrusted zone: {device.reachability.untrusted.path}"
+      - "unfiltered hops: {device.reachability.untrusted.unfiltered}"
+    description: Any business-critical system that can be reached without crossing a policy enforcement point is effectively internet-adjacent.
+    remediation: Cut the path with an ACL/policy at the access layer, or move the device into a restricted zone fronted by a firewall with explicit services allowed.
+    refs: {cwe: CWE-284, cis: "12.1,12.6", nist: "AC-4,SC-7", attack: "T1018"}
+
+  - id: NM-ARCH-006
+    title: Neighbour reported by CDP/LLDP but not discovered
+    version: "1"
+    scope: device
+    family: coverage
+    when: {path: device.dangling_neighbors}
+    severity: low
+    impact: 4
+    likelihood: 5
+    confidence: 0.5
+    evidence: ["{device.label} advertises neighbours we could not resolve: {device.dangling_neighbors}"]
+    description: An adjacency to a device that did not answer discovery means either an unmanaged/ACL-protected neighbour or a gap in the scan scope; both weaken the accuracy of the map used for risk decisions.
+    remediation: Add the neighbour's subnet to the scan scope, or record it as an out-of-scope handoff (partner/carrier circuit) so the topology is honest.
+    refs: {cwe: CWE-1188, cis: "1.1", nist: "CM-8"}
+
+  # ------------------------------------------------------------------ suspicious / attacker indicators
+  - id: NM-THREAT-001
+    title: Duplicate IP address claimed by two MAC addresses
+    version: "2"
+    scope: device
+    family: threat
+    when: {count: {path: device.duplicate_ip_macs}}
+    severity: high
+    impact: 8
+    likelihood: 5
+    evidence:
+      - "{device.ip} also answered by MAC(s) {device.duplicate_ip_macs} learned from {device.duplicate_ip_sources}"
+    description: Two MACs for one IP is normally ARP spoofing/poisoning, a rogue duplicate configuration, or a stale lease after a VM migration. The first case redirects traffic invisibly.
+    remediation: Enable DAI + IP Source Guard on the access VLAN, verify which switchport now owns the MAC, and check for an unapproved VM/host using the address.
+    refs: {cwe: CWE-290, cis: "12.1", nist: "SC-7,SI-4", attack: "T1557.002"}
+
+  - id: NM-THREAT-002
+    title: DHCP server that is not in the approved list
+    version: "1"
+    scope: device
+    family: threat
+    when:
+      and:
+        - {"==": [{path: device.device_type}, dhcp]}
+        - {path: device.is_rogue_dhcp}
+    severity: critical
+    impact: 9
+    likelihood: 6
+    evidence: ["{device.label} answers DHCP on {device.zone} but is not an approved relay/server"]
+    description: An unapproved DHCP server hands out its own gateway/DNS to clients, which is the fastest way to capture a whole VLAN's traffic and credentials.
+    remediation: Enable DHCP snooping on all access ports with the legitimate uplinks as `dhcp snooping trust`, and configure the option-82 guard/DAI pairing.
+    refs: {cwe: CWE-284, cis: "12.2", nist: "CM-6,SC-7", attack: "T1590.006"}
+
+  - id: NM-THREAT-003
+    title: Device rebooted unexpectedly
+    version: "1"
+    scope: device
+    family: threat
+    when: {"<": [{path: device.uptime_seconds}, 900]}
+    severity: low
+    impact: 5
+    likelihood: 4
+    confidence: 0.5
+    evidence: ["sysUpTime {device.uptime_seconds}s on {device.label}; last boot {device.last_boot}"]
+    description: A device that rebooted moments before the scan is either mid-outage, unstable, or clearing evidence after a config change; the change window list should explain it.
+    remediation: Correlate with the change record and the syslog boot message; if unexplained, inspect the config for deltas and pull the device's crashinfo/core dump.
+    refs: {cwe: CWE-1391, cis: "8.5", nist: "AU-6,SI-4", attack: "T1499"}
+
+  - id: NM-THREAT-004
+    title: Unusual service on a management port
+    version: "1"
+    scope: device
+    family: threat
+    when: {banner_regex: "(?i)(shellcode|/bin/sh|bash\\$|cmd.exe>|Metasploit|bind|tiny|tftp.*bootpc)"}
+    severity: critical
+    impact: 10
+    likelihood: 3
+    evidence: ["{service.port} banner: {service.banner}"]
+    foreach: {over: device.services, where: {"!=": [{path: service.banner}, null]}}
+    description: A banner that looks like a shell or a known implant means the box is already owned; stop scanning and move to incident response.
+    remediation: Preserve volatile state, isolate at the switchport (errdisable/VLAN quarantine), capture memory/config, and engage the IR process - do not reimage before evidence is taken.
+    refs: {cwe: CWE-1391, cis: "8.5,19.2", nist: "IR-4", attack: "T1059"}
+
+  # ------------------------------------------------------------------ network-scope rules
+  - id: NM-NET-001
+    title: No centralised authentication server discovered
+    version: "2"
+    scope: network
+    family: hardening
+    when:
+      and:
+        - {">=": [{path: network.infrastructure_count}, 3]}
+        - {"==": [{path: network.auth_server_count}, 0]}
+    severity: medium
+    impact: 6
+    likelihood: 7
+    evidence:
+      - "{network.infrastructure_count} network devices found, no RADIUS/TACACS+ service on 1812/1813/49/2001/3799"
+    description: Without a central auth source, device accounts cannot be rotated centrally, authorisation cannot be per-command, and shared local accounts make accountability impossible.
+    remediation: Deploy TACACS+ (or RADIUS) for device administration with per-command authorisation, and remove shared local admin accounts except one break-glass account under vault control.
+    refs: {cwe: CWE-287, cis: "5.4,6.8", nist: "IA-2(1),IA-2(2),AC-6", attack: "T1556"}
+
+  - id: NM-NET-002
+    title: Too little of the estate is observable (SNMP/telemetry coverage)
+    version: "2"
+    scope: network
+    family: coverage
+    when:
+      and:
+        - {">=": [{path: network.device_count}, 5]}
+        - {"<": [{path: network.snmp_coverage_pct}, 60]}
+    severity: medium
+    impact: 5
+    likelihood: 7
+    evidence:
+      - "SNMP readable on {network.snmp_readable}/{network.device_count} devices ({network.snmp_coverage_pct}%)"
+      - "devices without telemetry: {network.devices_without_snmp}"
+    description: Interfaces, neighbour tables, FDB and configuration facts cannot be assessed where telemetry is absent, so both the topology and the risk score are guesses on those segments.
+    remediation: Extend the read-only SNMP/TLS profile to every infrastructure device (or NETCONF/gNMI), scoped to poller IPs with an ACL, and re-run discovery to close the gaps.
+    refs: {cwe: CWE-1188, cis: "8.1", nist: "AU-6,CM-8,SI-4"}
+
+  - id: NM-NET-003
+    title: >-
+      Inventory drift: undocumented share above threshold
+    version: "1"
+    scope: network
+    family: asset
+    when:
+      and:
+        - {">=": [{path: network.undocumented_pct}, 15]}
+        - {">=": [{path: network.device_count}, 5]}
+    severity: medium
+    impact: 5
+    likelihood: 8
+    evidence:
+      - "{network.undocumented}/{network.device_count} live addresses ({network.undocumented_pct}%) are absent from the inventory export"
+    description: A CMDB that misses 15% of live addresses cannot support patching, access reviews or incident triage, and it hides the shadow devices that get breached.
+    remediation: Reconcile the discovery output into the CMDB on a schedule, then alert when undocumented devices appear; remove or own every device that remains.
+    refs: {cwe: CWE-1188, cis: "1.1,1.2", nist: "CM-8"}
+
+  - id: NM-NET-004
+    title: >-
+      Flat network: no zone boundaries derived for a large segment
+    version: "1"
+    scope: network
+    family: segmentation
+    when: {">=": [{max_of: {path: network.zone_sizes_unbounded}}, 10]}
+    severity: high
+    impact: 7
+    likelihood: 6
+    evidence: ["largest zone without configured boundaries holds {network.max_zone_size_unbounded} devices: {network.max_zone_unbounded}"]
+    description: When more than ten discovered devices fall into one un-zoned segment, there is no policy boundary between them; the whole segment is one broadcast domain plus one flat L2.
+    remediation: Define zones in the config with their CIDRs/VLANs, then split the segment (VLANs + private VLAN/community ports or a fabric policy) with a documented inter-zone policy.
+    refs: {cwe: CWE-284, cis: "12.1,9.2", nist: "AC-4,SC-7"}
+
+  - id: NM-NET-005
+    title: >-
+      Gateway/SPOF: a zone depends on a single routing device
+    version: "2"
+    scope: network
+    family: architecture
+    when: {">=": [{count: {path: network.zones_with_single_gateway}}, 1]}
+    severity: medium
+    impact: 6
+    likelihood: 5
+    evidence:
+      - "zones with one non-redundant gateway: {network.zones_with_single_gateway}"
+    description: A zone whose only route is a single device loses everything when that device fails or is patched; this is the most common self-inflicted outage cause in enterprise networks.
+    remediation: Provide a first-hop redundancy protocol (VRRP/HSRP) or fabric any-to-any routing with dual gateways and verified failover timings.
+    refs: {cwe: CWE-1391, cis: "10.5", nist: "CP-10,SC-6"}
+
+  - id: NM-NET-006
+    title: Wireless guest traffic can reach internal zones
+    version: "1"
+    scope: network
+    family: segmentation
+    when:
+      and:
+        - {">=": [{path: network.guest_to_internal_paths}, 1]}
+    severity: high
+    impact: 8
+    likelihood: 6
+    evidence:
+      - "{network.guest_to_internal_paths} path(s) from guest/untrusted wireless into internal zones: {network.guest_paths}"
+    description: Guest/BYOD SSIDs must be isolated except for DNS/DHCP/Internet; anything else hands an unmanaged, unauthenticated population a route to internal services.
+    remediation: Apply a guest ACL (permit DHCP/DNS + Internet only), enable client isolation, and anchor the guest anchor/egress at the DMZ with no return route to internal subnets.
+    refs: {cwe: CWE-284, cis: "12.1,16.4", nist: "AC-4,SC-7", attack: "T1018"}

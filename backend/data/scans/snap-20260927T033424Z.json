@@ -1,0 +1,625 @@
+{
+  "authorization": {
+    "confirmed": true,
+    "scope": [
+      "127.0.0.1/32"
+    ],
+    "signed_by": "web operator",
+    "statement": "confirmed in the web UI at scan start",
+    "ticket": null,
+    "valid_until": null
+  },
+  "config": {
+    "concurrency": 180,
+    "excluded": 0,
+    "mode": "live",
+    "operator": "web-operator",
+    "profile": "default",
+    "rate_pps": 350,
+    "reference": {
+      "banner_rules": 60,
+      "http_probes": 28,
+      "lifecycle_entries": 29,
+      "loaded": true,
+      "os_rules": 31,
+      "source": "C:\\Users\\Lenovo\\Documents\\Default Project\\_netmap_extract\\netmap\\refs\\reference.yaml"
+    },
+    "risk_audit": {
+      "findings": 1,
+      "hit_count": {
+        "NM-ASSET-001": 1
+      },
+      "rules_active": 53,
+      "rules_total": 53,
+      "skipped": {}
+    },
+    "snmp": true,
+    "sources": [],
+    "stages": [
+      {
+        "counters": {
+          "alive": 1,
+          "targeted": 1
+        },
+        "name": "host-discovery",
+        "notes": [],
+        "seconds": 0.625
+      },
+      {
+        "counters": {
+          "hosts": 1,
+          "open_ports": 1
+        },
+        "name": "port-scan",
+        "notes": [],
+        "seconds": 1.516
+      },
+      {
+        "counters": {
+          "services": 1
+        },
+        "name": "service-fingerprint",
+        "notes": [],
+        "seconds": 0.0
+      },
+      {
+        "counters": {},
+        "name": "name-resolution",
+        "notes": [
+          "no host advertised udp/161; SNMP enumeration skipped"
+        ],
+        "seconds": 0.016
+      },
+      {
+        "counters": {
+          "default_community": 0,
+          "readable": 0
+        },
+        "name": "snmp-enumeration",
+        "notes": [],
+        "seconds": 0.0
+      },
+      {
+        "counters": {},
+        "name": "passive-neighbours",
+        "notes": [
+          "disabled (set scan.capture.enabled to ingest CDP/LLDP frames)"
+        ],
+        "seconds": 0.0
+      },
+      {
+        "counters": {},
+        "name": "classification",
+        "notes": [],
+        "seconds": 0.0
+      }
+    ],
+    "targets_expanded": 1,
+    "tcp_ports": 7,
+    "timings": {
+      "risk_seconds": 0.158,
+      "topology_seconds": 0.0
+    },
+    "topology_metrics": {
+      "articulation_points": 0,
+      "bridges": 0,
+      "components": 1,
+      "derived_from": {
+        "mac_table": 0,
+        "neighbour_protocol": 0,
+        "routing": 0,
+        "same_subnet": 0
+      },
+      "edges": 0,
+      "isolated_nodes": 1,
+      "largest_component": 1,
+      "link_coverage_pct": 0.0,
+      "mean_degree": 0.0,
+      "nodes": 1,
+      "notes": [],
+      "redundant_pairs": 0,
+      "trust_crossings": []
+    },
+    "udp_ports": 2
+  },
+  "counters": {
+    "arp_entries": 7,
+    "arp_source": "system",
+    "articulation_points": 0,
+    "bridges": 0,
+    "devices_documented": 0,
+    "discovery_evidence": {
+      "127.0.0.1": [
+        "ping rc=1",
+        "port 445/tcp open"
+      ]
+    },
+    "findings": 1,
+    "hosts_alive": 1,
+    "hosts_seeded_by_arp": 0,
+    "hosts_targeted": 1,
+    "hosts_unresponsive": 0,
+    "http_endpoints": 0,
+    "links_built": 0,
+    "ports_probed": 9,
+    "services_found": 1,
+    "snmp_default_community": 0,
+    "snmp_readable": 0,
+    "tls_endpoints": 0
+  },
+  "devices": [
+    {
+      "arp": [],
+      "asset_tag": null,
+      "config": {},
+      "criticality": 2,
+      "device_type": "unknown",
+      "discovery_sources": [
+        "sweep"
+      ],
+      "documented": false,
+      "exposed_to_wan": false,
+      "fdb": [],
+      "finding_ids": [
+        "NM-ASSET-001@ip:127.0.0.1"
+      ],
+      "firmware": null,
+      "hostname": "xyzYU",
+      "id": "ip:127.0.0.1",
+      "interfaces": [],
+      "inventory": {},
+      "ip": "127.0.0.1",
+      "last_boot": null,
+      "last_seen": "2026-09-27T03:34:25Z",
+      "mac": null,
+      "model": null,
+      "neighbors": [],
+      "notes": [],
+      "os_eol": null,
+      "os_eol_basis": null,
+      "os_family": null,
+      "os_version": null,
+      "raw": {
+        "accepted_findings": 0,
+        "component": 0,
+        "component_size": 1,
+        "degree": 0,
+        "findings_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "info": 0,
+          "low": 0,
+          "medium": 1
+        },
+        "is_articulation_point": false,
+        "isolated": true,
+        "uplinks_from_links": 0
+      },
+      "reachable": true,
+      "risk_score": 3.6,
+      "role": null,
+      "routes": [],
+      "serial": null,
+      "services": [
+        {
+          "banner": null,
+          "certificate": null,
+          "confidence": 0.6,
+          "config": {
+            "cleartext_expected_tls": false
+          },
+          "cpe": null,
+          "encryption": "none",
+          "extrainfo": null,
+          "http": {},
+          "name": "microsoft-ds",
+          "port": 445,
+          "probe": null,
+          "product": null,
+          "protocol": "tcp",
+          "state": "open",
+          "version": null
+        }
+      ],
+      "snmp": {},
+      "sys_descr": null,
+      "tags": [],
+      "trust": "internal",
+      "uptime_seconds": null,
+      "vendor": null,
+      "vlan": null,
+      "wan_interfaces": [],
+      "zone": "subnet-127-0-0-0_24"
+    }
+  ],
+  "drift": null,
+  "duration_seconds": 2.47,
+  "errors": [],
+  "findings": [
+    {
+      "confidence": 0.75,
+      "criticality": 2,
+      "description": "Anything responding that the CMDB does not know about is either unmanaged, unpatched, or intentionally installed by someone. Each case needs an owner, an OS baseline and a patch plan.",
+      "device_type": "unknown",
+      "evidence": [
+        {
+          "text": "127.0.0.1 (xyzYU) type=unknown vendor= not present in the inventory export"
+        },
+        {
+          "text": "open ports: 445"
+        }
+      ],
+      "exposed": false,
+      "fingerprint": "6af4f31b3b246209",
+      "first_seen": "2026-09-27T03:34:27Z",
+      "id": "NM-ASSET-001@ip:127.0.0.1",
+      "impact": null,
+      "likelihood": "6.0",
+      "refs": {
+        "attack": "T1590.003",
+        "cis": "1.1,1.2",
+        "cwe": "CWE-1188",
+        "nist": "CM-8,CM-6"
+      },
+      "remediation": "Identify the owner from DHCP leases/switch port + MAC OUI, then either add it to inventory with a security baseline or remove it from the network.",
+      "rule_id": "NM-ASSET-001",
+      "rule_title": "Undocumented device on the network",
+      "rule_version": "3",
+      "scope": "device",
+      "score": 3.6,
+      "severity": "medium",
+      "status": "open",
+      "status_note": null,
+      "target_id": "ip:127.0.0.1",
+      "target_label": "xyzYU (127.0.0.1)",
+      "zone": "subnet-127-0-0-0_24"
+    }
+  ],
+  "finished": "2026-09-27T03:34:27Z",
+  "links": [],
+  "mode": "live",
+  "notes": [
+    "Discovery is read-only: no SNMP SET, no login attempts, no exploit payloads."
+  ],
+  "operator": "web-operator",
+  "risk": {
+    "accepted_findings": 0,
+    "band": "Moderate",
+    "band_scale": [
+      {
+        "label": "Critical",
+        "min": 9.0
+      },
+      {
+        "label": "High",
+        "min": 7.0
+      },
+      {
+        "label": "Moderate",
+        "min": 4.5
+      },
+      {
+        "label": "Low",
+        "min": 2.0
+      },
+      {
+        "label": "Minimal",
+        "min": 0.0
+      }
+    ],
+    "components": {
+      "architecture_index": 4.0,
+      "coverage_penalty": 1.2,
+      "exposure_index": 0.75,
+      "structural_penalty": 1.5,
+      "weighted_device_risk": 3.6,
+      "worst_device_risk": 3.6
+    },
+    "counts": {
+      "critical": 0,
+      "high": 0,
+      "info": 0,
+      "low": 0,
+      "medium": 1
+    },
+    "families": {
+      "ASSET": {
+        "count": 1,
+        "score": 3.6,
+        "share_pct": 100.0,
+        "worst": "medium"
+      }
+    },
+    "open_findings": 1,
+    "score": 5.91,
+    "structure": {
+      "bridge_rate": 0.0,
+      "bridges": 0,
+      "isolated_nodes": 1,
+      "link_coverage_pct": 0.0,
+      "links": 1,
+      "nodes": 1
+    },
+    "total_findings": 1
+  },
+  "scanner_version": "1.0.0",
+  "schema_version": "1.0",
+  "snapshot_id": "snap-20260927T033424Z",
+  "started": "1970-01-06T01:02:29Z",
+  "summary": {
+    "accepted_risk": 0,
+    "device_types": {
+      "unknown": 1
+    },
+    "devices": {
+      "by_type": {
+        "unknown": 1
+      },
+      "documented": 0,
+      "exposed_to_wan": 0,
+      "ips": [
+        "127.0.0.1"
+      ],
+      "ports_open": [
+        445
+      ],
+      "reachable": 1,
+      "total": 1,
+      "undocumented": 1,
+      "undocumented_pct": 100.0,
+      "with_eol": 0
+    },
+    "findings": {
+      "critical": 0,
+      "high": 0,
+      "info": 0,
+      "low": 0,
+      "medium": 1,
+      "total": 1
+    },
+    "generated_at": "2026-09-27T03:34:27Z",
+    "links": 0,
+    "mode": "live",
+    "open_findings": 1,
+    "risk": {
+      "accepted_findings": 0,
+      "band": "Moderate",
+      "band_scale": [
+        {
+          "label": "Critical",
+          "min": 9.0
+        },
+        {
+          "label": "High",
+          "min": 7.0
+        },
+        {
+          "label": "Moderate",
+          "min": 4.5
+        },
+        {
+          "label": "Low",
+          "min": 2.0
+        },
+        {
+          "label": "Minimal",
+          "min": 0.0
+        }
+      ],
+      "components": {
+        "architecture_index": 4.0,
+        "coverage_penalty": 1.2,
+        "exposure_index": 0.75,
+        "structural_penalty": 1.5,
+        "weighted_device_risk": 3.6,
+        "worst_device_risk": 3.6
+      },
+      "counts": {
+        "critical": 0,
+        "high": 0,
+        "info": 0,
+        "low": 0,
+        "medium": 1
+      },
+      "families": {
+        "ASSET": {
+          "count": 1,
+          "score": 3.6,
+          "share_pct": 100.0,
+          "worst": "medium"
+        }
+      },
+      "open_findings": 1,
+      "score": 5.91,
+      "structure": {
+        "bridge_rate": 0.0,
+        "bridges": 0,
+        "isolated_nodes": 1,
+        "link_coverage_pct": 0.0,
+        "links": 1,
+        "nodes": 1
+      },
+      "total_findings": 1
+    },
+    "risk_band": "Moderate",
+    "scan_errors": 0,
+    "services": [
+      {
+        "cleartext": 1,
+        "devices": 1,
+        "name": "microsoft-ds",
+        "ports": [
+          445
+        ],
+        "products": []
+      }
+    ],
+    "top_findings": [
+      {
+        "rule": "NM-ASSET-001",
+        "score": 3.6,
+        "severity": "medium",
+        "target": "xyzYU (127.0.0.1)",
+        "title": "Undocumented device on the network"
+      }
+    ],
+    "topology": {
+      "articulation_points": 0,
+      "bridges": 0,
+      "components": 1,
+      "edges": 0,
+      "isolated_nodes": 1,
+      "largest_component": 1,
+      "link_coverage_pct": 0.0,
+      "mean_degree": 0.0,
+      "nodes": 1,
+      "redundant_pairs": 0,
+      "trust_crossings": []
+    },
+    "zones": 10,
+    "zones_by_trust": {
+      "dmz": 1,
+      "internal": 4,
+      "out_of_band": 1,
+      "restricted": 2,
+      "untrusted": 2
+    }
+  },
+  "targets": [
+    "127.0.0.1"
+  ],
+  "zones": [
+    {
+      "cidrs": [],
+      "default_gateway": null,
+      "description": "Internet-facing / perimeter segment",
+      "device_count": 0,
+      "name": "wan-edge",
+      "segmentation_enforced": true,
+      "segmentation_note": null,
+      "trust": "untrusted",
+      "vlans": [
+        10
+      ]
+    },
+    {
+      "cidrs": [],
+      "default_gateway": null,
+      "description": "Public services",
+      "device_count": 0,
+      "name": "dmz",
+      "segmentation_enforced": true,
+      "segmentation_note": null,
+      "trust": "dmz",
+      "vlans": [
+        20
+      ]
+    },
+    {
+      "cidrs": [],
+      "default_gateway": null,
+      "description": "Core/distribution switching and routing",
+      "device_count": 0,
+      "name": "core",
+      "segmentation_enforced": true,
+      "segmentation_note": null,
+      "trust": "internal",
+      "vlans": [
+        100
+      ]
+    },
+    {
+      "cidrs": [],
+      "default_gateway": null,
+      "description": "Application + database tiers",
+      "device_count": 0,
+      "name": "server-farm",
+      "segmentation_enforced": true,
+      "segmentation_note": null,
+      "trust": "restricted",
+      "vlans": [
+        110,
+        120
+      ]
+    },
+    {
+      "cidrs": [],
+      "default_gateway": null,
+      "description": "SAN/NAS and backup",
+      "device_count": 0,
+      "name": "storage",
+      "segmentation_enforced": true,
+      "segmentation_note": null,
+      "trust": "restricted",
+      "vlans": [
+        130
+      ]
+    },
+    {
+      "cidrs": [],
+      "default_gateway": null,
+      "description": "OOB device management",
+      "device_count": 0,
+      "name": "management",
+      "segmentation_enforced": true,
+      "segmentation_note": null,
+      "trust": "out_of_band",
+      "vlans": [
+        999
+      ]
+    },
+    {
+      "cidrs": [],
+      "default_gateway": null,
+      "description": "User access layer and wireless",
+      "device_count": 0,
+      "name": "access",
+      "segmentation_enforced": true,
+      "segmentation_note": null,
+      "trust": "internal",
+      "vlans": [
+        200,
+        210
+      ]
+    },
+    {
+      "cidrs": [],
+      "default_gateway": null,
+      "description": "Cameras, badges, AV",
+      "device_count": 0,
+      "name": "iot",
+      "segmentation_enforced": true,
+      "segmentation_note": null,
+      "trust": "internal",
+      "vlans": [
+        300
+      ]
+    },
+    {
+      "cidrs": [],
+      "default_gateway": null,
+      "description": "BYOD / guest",
+      "device_count": 0,
+      "name": "guest",
+      "segmentation_enforced": true,
+      "segmentation_note": null,
+      "trust": "untrusted",
+      "vlans": [
+        400
+      ]
+    },
+    {
+      "cidrs": [
+        "127.0.0.0/24"
+      ],
+      "default_gateway": null,
+      "description": "auto-derived from discovered address space (not in config.zones)",
+      "device_count": 1,
+      "name": "subnet-127-0-0-0_24",
+      "segmentation_enforced": false,
+      "segmentation_note": null,
+      "trust": "internal",
+      "vlans": []
+    }
+  ]
+}

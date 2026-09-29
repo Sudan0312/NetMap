@@ -1,0 +1,108 @@
+# Site-specific risk rules.
+#
+#   netmap lab --rules examples/custom_rules.yaml
+#   netmap analyze --from out/lab-snapshot.json --rules examples/custom_rules.yaml --save out/x.json
+#
+# `when` is a JSONLogic-lite expression evaluated against a facts namespace:
+#
+#   device.*   the device record + derived facts (open_ports, isolation, lifecycle, ...)
+#   service.*  inside `foreach`, the service currently being examined
+#   link.*     scope: link rules
+#   network.*  scope: network rules (coverage, zone rollups, structural counts)
+#   scan.*     thresholds and mode
+#
+# Operators: and or not == != > >= < <= in not_in any_in contains regex count sum
+#            max_of min_of path literal join coalesce any_service all_services
+#            match_services port_open open_port_list tls_of eol_state days_until
+#            version_lt has_tag zone_trust reachable_from max_trust_distance
+#            neighbour_missing process_absent http_state service_config banner_regex
+#
+# Validate before shipping:  netmap rules validate --files examples/custom_rules.yaml
+
+meta:
+  name: example-site-rules
+  version: "1"
+  description: House rules for ACME - wireless guest escape, storage exposure, change hygiene.
+
+rules:
+  # 1) A rule with a threshold and a scope filter.
+  - id: ACME-EXPOSE-001
+    title: Database port reachable from the user access VLAN
+    version: "1"
+    scope: device
+    family: exposure
+    when:
+      and:
+        - {in: [{path: service.port}, [1433, 3306, 5432, 27017, 1521]]}
+        - {not: {path: device.reachability.internal.filtered}}
+    foreach:
+      over: device.services
+      where: {in: [{path: service.port}, [1433, 3306, 5432, 27017, 1521]]}
+    severity: high
+    impact: 9
+    likelihood: 6
+    confidence: 0.7
+    evidence:
+      - "{service.port}/{service.protocol} on {device.hostname} sits {device.reachability.internal.hops} hop(s) from the user access VLAN with no policy device between"
+      - "closest access-side peer: {device.nearest_far_zone}"
+    description: >-
+      Standard says database listeners are reachable only from the application
+      tier. This device answers a database port from a path the access VLAN can
+      walk without crossing a firewall.
+    remediation: >-
+      Add an ACL on the access-layer gateway or a firewall rule limiting the
+      database ports to the app-tier subnet, then re-run the scan to confirm.
+    refs:
+      nist: AC-4,SC-7
+      cis: "9.3"
+      cwe: CWE-284
+      family: exposure
+    tags: [database, segmentation, acme]
+
+  # 2) A network-wide rule: coverage the auditors ask about at the start.
+  - id: ACME-COV-001
+    title: More than 5% of responding devices are undocumented
+    version: "1"
+    scope: network
+    family: asset
+    when: {">=": [{path: network.undocumented_pct}, 5.0]}
+    severity: medium
+    impact: 6
+    likelihood: 8
+    confidence: 0.9
+    evidence:
+      - "{network.undocumented} of {network.device_count} devices ({network.undocumented_pct}%) are absent from the CMDB export"
+      - "examples: {network.devices_without_snmp}"
+    description: >-
+      Anything not in the asset record has no owner, no patch ring and no
+      retirement plan, so its risk cannot be triaged by the people who have to
+      fix it.
+    remediation: Reconcile the CMDB against the discovered list, then either add the device or remove the address with the DHCP reservation and switchport.
+    refs:
+      nist: CM-8,PM-5
+      cis: "1.1"
+      family: asset
+
+  # 3) A link rule with an escalate clause.
+  - id: ACME-LINK-001
+    title: Storage array uplink is a single point of failure
+    version: "1"
+    scope: link
+    family: architecture
+    when:
+      and:
+        - {path: link.is_spof}
+        - {in: [{path: link.dst_type}, [storage, database]]}
+    severity: medium
+    impact: 9
+    likelihood: 3
+    escalate:
+      - {when: {">=": [{path: link.speed_mbps}, 25000]}, severity: high, reason: "25GbE+ storage fabric, so the blast radius is large"}
+    evidence:
+      - "{link.src_label}:{link.src_interface} -> {link.dst_label}:{link.dst_interface} is the only path"
+      - "derived from: {link.derived_from}"
+    description: A storage target with one active path means one optic, one port or one switch reboots every LUN behind it.
+    remediation: Add the second HBA/target port to the fabric and enable ALB/MLAG so both paths carry traffic.
+    refs:
+      nist: CP-2,SC-6
+      family: architecture

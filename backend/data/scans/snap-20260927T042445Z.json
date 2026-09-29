@@ -1,0 +1,2419 @@
+{
+  "authorization": {
+    "confirmed": true,
+    "scope": [
+      "192.168.1.0/24"
+    ],
+    "signed_by": "web operator",
+    "statement": "web UI authorized scan",
+    "ticket": null,
+    "valid_until": null
+  },
+  "config": {
+    "concurrency": 180,
+    "excluded": 0,
+    "mode": "live",
+    "operator": "web-operator",
+    "profile": "default",
+    "rate_pps": 350,
+    "reference": {
+      "banner_rules": 60,
+      "http_probes": 28,
+      "lifecycle_entries": 29,
+      "loaded": true,
+      "os_rules": 31,
+      "source": "C:\\Users\\Lenovo\\Documents\\Default Project\\_netmap_extract\\netmap\\refs\\reference.yaml"
+    },
+    "risk_audit": {
+      "findings": 4,
+      "hit_count": {
+        "NM-ASSET-001": 2,
+        "NM-CERT-004": 1,
+        "NM-TLS-001": 1
+      },
+      "rules_active": 53,
+      "rules_total": 53,
+      "skipped": {}
+    },
+    "snmp": true,
+    "sources": [],
+    "stages": [
+      {
+        "counters": {
+          "alive": 2,
+          "targeted": 254
+        },
+        "name": "host-discovery",
+        "notes": [],
+        "seconds": 4.39
+      },
+      {
+        "counters": {
+          "hosts": 2,
+          "open_ports": 6
+        },
+        "name": "port-scan",
+        "notes": [],
+        "seconds": 1.703
+      },
+      {
+        "counters": {
+          "services": 6
+        },
+        "name": "service-fingerprint",
+        "notes": [],
+        "seconds": 1.297
+      },
+      {
+        "counters": {},
+        "name": "name-resolution",
+        "notes": [
+          "no host advertised udp/161; SNMP enumeration skipped"
+        ],
+        "seconds": 0.031
+      },
+      {
+        "counters": {
+          "default_community": 0,
+          "readable": 0
+        },
+        "name": "snmp-enumeration",
+        "notes": [],
+        "seconds": 0.0
+      },
+      {
+        "counters": {},
+        "name": "passive-neighbours",
+        "notes": [
+          "disabled (set scan.capture.enabled to ingest CDP/LLDP frames)"
+        ],
+        "seconds": 0.0
+      },
+      {
+        "counters": {},
+        "name": "classification",
+        "notes": [],
+        "seconds": 0.0
+      }
+    ],
+    "targets_expanded": 254,
+    "tcp_ports": 87,
+    "timings": {
+      "risk_seconds": 0.363,
+      "topology_seconds": 0.0
+    },
+    "topology_metrics": {
+      "articulation_points": 0,
+      "bridges": 0,
+      "components": 2,
+      "derived_from": {
+        "mac_table": 0,
+        "neighbour_protocol": 0,
+        "routing": 0,
+        "same_subnet": 0
+      },
+      "edges": 0,
+      "isolated_nodes": 2,
+      "largest_component": 1,
+      "link_coverage_pct": 0.0,
+      "mean_degree": 0.0,
+      "nodes": 2,
+      "notes": [],
+      "redundant_pairs": 0,
+      "trust_crossings": []
+    },
+    "udp_ports": 8
+  },
+  "counters": {
+    "arp_entries": 6,
+    "arp_source": "system",
+    "articulation_points": 0,
+    "bridges": 0,
+    "devices_documented": 0,
+    "discovery_evidence": {
+      "192.168.1.1": [
+        "neighbour table"
+      ],
+      "192.168.1.10": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.100": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.101": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.102": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.103": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.104": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.105": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.106": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.107": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.108": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.109": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.11": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.110": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.111": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.112": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.113": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.114": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.115": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.116": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.117": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.118": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.119": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.12": [
+        "ping rc=1",
+        "port 445/tcp open"
+      ],
+      "192.168.1.120": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.121": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.122": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.123": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.124": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.125": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.126": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.127": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.128": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.129": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.13": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.130": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.131": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.132": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.133": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.134": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.135": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.136": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.137": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.138": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.139": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.14": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.140": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.141": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.142": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.143": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.144": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.145": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.146": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.147": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.148": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.149": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.15": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.150": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.151": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.152": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.153": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.154": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.155": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.156": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.157": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.158": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.159": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.16": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.160": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.161": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.162": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.163": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.164": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.165": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.166": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.167": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.168": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.169": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.17": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.170": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.171": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.172": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.173": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.174": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.175": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.176": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.177": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.178": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.179": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.18": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.180": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.181": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.182": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.183": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.184": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.185": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.186": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.187": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.188": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.189": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.19": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.190": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.191": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.192": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.193": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.194": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.195": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.196": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.197": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.198": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.199": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.2": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.20": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.200": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.201": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.202": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.203": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.204": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.205": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.206": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.207": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.208": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.209": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.21": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.210": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.211": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.212": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.213": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.214": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.215": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.216": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.217": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.218": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.219": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.22": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.220": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.221": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.222": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.223": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.224": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.225": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.226": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.227": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.228": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.229": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.23": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.230": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.231": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.232": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.233": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.234": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.235": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.236": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.237": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.238": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.239": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.24": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.240": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.241": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.242": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.243": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.244": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.245": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.246": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.247": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.248": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.249": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.25": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.250": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.251": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.252": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.253": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.254": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.26": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.27": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.28": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.29": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.3": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.30": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.31": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.32": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.33": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.34": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.35": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.36": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.37": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.38": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.39": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.4": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.40": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.41": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.42": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.43": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.44": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.45": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.46": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.47": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.48": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.49": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.5": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.50": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.51": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.52": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.53": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.54": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.55": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.56": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.57": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.58": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.59": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.6": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.60": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.61": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.62": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.63": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.64": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.65": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.66": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.67": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.68": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.69": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.7": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.70": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.71": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.72": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.73": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.74": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.75": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.76": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.77": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.78": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.79": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.8": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.80": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.81": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.82": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.83": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.84": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.85": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.86": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.87": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.88": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.89": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.9": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.90": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.91": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.92": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.93": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.94": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.95": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.96": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.97": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.98": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ],
+      "192.168.1.99": [
+        "ping rc=1",
+        "no answer to icmp or tcp ping"
+      ]
+    },
+    "findings": 4,
+    "hosts_alive": 2,
+    "hosts_seeded_by_arp": 1,
+    "hosts_targeted": 254,
+    "hosts_unresponsive": 252,
+    "http_endpoints": 1,
+    "links_built": 0,
+    "ports_probed": 190,
+    "rtt_ms": {
+      "192.168.1.12": 281.0
+    },
+    "services_found": 6,
+    "snmp_default_community": 0,
+    "snmp_readable": 0,
+    "tls_endpoints": 1
+  },
+  "devices": [
+    {
+      "arp": [],
+      "asset_tag": null,
+      "config": {},
+      "criticality": 2,
+      "device_type": "web",
+      "discovery_sources": [
+        "sweep"
+      ],
+      "documented": false,
+      "exposed_to_wan": false,
+      "fdb": [],
+      "finding_ids": [
+        "NM-TLS-001@ip:192.168.1.1",
+        "NM-ASSET-001@ip:192.168.1.1",
+        "NM-CERT-004@ip:192.168.1.1"
+      ],
+      "firmware": null,
+      "hostname": "Unit",
+      "id": "ip:192.168.1.1",
+      "interfaces": [],
+      "inventory": {},
+      "ip": "192.168.1.1",
+      "last_boot": null,
+      "last_seen": "2026-09-27T04:24:49Z",
+      "mac": null,
+      "model": null,
+      "neighbors": [],
+      "notes": [],
+      "os_eol": null,
+      "os_eol_basis": null,
+      "os_family": null,
+      "os_version": null,
+      "raw": {
+        "accepted_findings": 0,
+        "component": 0,
+        "component_size": 1,
+        "degree": 0,
+        "findings_by_severity": {
+          "critical": 0,
+          "high": 1,
+          "info": 0,
+          "low": 0,
+          "medium": 2
+        },
+        "is_articulation_point": false,
+        "isolated": true,
+        "uplinks_from_links": 0
+      },
+      "reachable": true,
+      "risk_score": 7.67,
+      "role": null,
+      "routes": [],
+      "serial": null,
+      "services": [
+        {
+          "banner": "HTTP/1.1 404 Not Found\r\nContent-Type: text/html\r\nCache-Control: no-store,max-age=0\r\nX-Frame-Options: DENY\r\nX-Content-Type-Options: nosniff\r\nX-XSS-Protection: 1; mode=block\r\nStrict-Transport-Security: max-age=7776000; includeSubdomains\r\nContent-Length: 341\r\nDate: Sun, 27 Sep 2026 04:24:50 GMT",
+          "certificate": {
+            "bits": 256,
+            "cipher": "TLS_AES_256_GCM_SHA384",
+            "days_left": 2756.6,
+            "error": null,
+            "hostname_match": false,
+            "issuer_cn": "UCCLOCAL-CPUNLYNCOTZT01-CA-1",
+            "key_bits": 4096,
+            "key_type": "rsaEncryption",
+            "not_after": "2034-04-14T18:39:52Z",
+            "not_before": "2024-04-16T18:39:52Z",
+            "pinned_hosts": [],
+            "protocol": "TLSv1.3",
+            "san": [],
+            "san_source": "common_name",
+            "self_signed": false,
+            "subject": {},
+            "subject_cn": "Airtel-CPE-0001",
+            "weak_cipher": false
+          },
+          "confidence": 0.6,
+          "config": {
+            "_probe_detail": {
+              "tls": {
+                "alpn": null,
+                "cipher": "TLS_AES_256_GCM_SHA384",
+                "cipher_alg": "TLSv1.3",
+                "cipher_bits": 256,
+                "compression": "<bound method SSLSocket.compression of <ssl.SSLSocket [closed] fd=-1, family=2, type=1, proto=0>>",
+                "fingerprint_sha256": "00f6a84e4d235dde56eeb2e8e5e23b5690df086bbb7b9d503123faf9ba602aa7",
+                "host": "192.168.1.1",
+                "port": 443,
+                "protocol": "TLSv1.3",
+                "verified": false,
+                "verify_error": "SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)",
+                "weak_cipher": false,
+                "weak_protocol": false
+              }
+            },
+            "certificate_fingerprint_sha256": "00f6a84e4d235dde56eeb2e8e5e23b5690df086bbb7b9d503123faf9ba602aa7",
+            "key_bits": 4096,
+            "not_after": "2034-04-14T18:39:52Z",
+            "san": [],
+            "san_source": "common_name",
+            "self_signed": false,
+            "tls_cipher": "TLS_AES_256_GCM_SHA384",
+            "tls_verified": false,
+            "tls_version": "TLSv1.3",
+            "weak_cipher": false,
+            "weak_protocol": false
+          },
+          "cpe": null,
+          "encryption": "tls",
+          "extrainfo": null,
+          "http": {
+            "exposed_admin_paths": [],
+            "headers": {
+              "strict-transport-security": "max-age=7776000; includeSubdomains",
+              "x-content-type-options": "nosniff",
+              "x-frame-options": "DENY"
+            },
+            "leaks": [],
+            "paths": {
+              "/.env": {
+                "content_type": "text/html",
+                "location": null,
+                "matched": false,
+                "risky_path": true,
+                "server": null,
+                "status": 404
+              },
+              "/admin/": {
+                "content_type": "text/html",
+                "location": null,
+                "matched": null,
+                "risky_path": true,
+                "server": null,
+                "status": 404
+              },
+              "/api": {
+                "content_type": "text/html",
+                "location": null,
+                "matched": null,
+                "risky_path": false,
+                "server": null,
+                "status": 404
+              },
+              "/host-manager/html": {
+                "content_type": "text/html",
+                "location": null,
+                "matched": null,
+                "risky_path": true,
+                "server": null,
+                "status": 404
+              },
+              "/login": {
+                "content_type": "text/html",
+                "location": null,
+                "matched": null,
+                "risky_path": false,
+                "server": null,
+                "status": 404
+              },
+              "/manager/html": {
+                "content_type": "text/html",
+                "location": null,
+                "matched": null,
+                "risky_path": true,
+                "server": null,
+                "status": 404
+              },
+              "/phpinfo.php": {
+                "content_type": "text/html",
+                "location": null,
+                "matched": false,
+                "risky_path": true,
+                "server": null,
+                "status": 404
+              },
+              "/phpmyadmin/": {
+                "content_type": "text/html",
+                "location": null,
+                "matched": null,
+                "risky_path": true,
+                "server": null,
+                "status": 404
+              },
+              "/pma/": {
+                "content_type": "text/html",
+                "location": null,
+                "matched": null,
+                "risky_path": true,
+                "server": null,
+                "status": 404
+              },
+              "/robots.txt": {
+                "content_type": "text/html",
+                "location": null,
+                "matched": null,
+                "risky_path": false,
+                "server": null,
+                "status": 404
+              },
+              "/server-status": {
+                "content_type": "text/html",
+                "location": null,
+                "matched": false,
+                "risky_path": true,
+                "server": null,
+                "status": 404
+              },
+              "/status": {
+                "content_type": "text/html",
+                "location": null,
+                "matched": null,
+                "risky_path": false,
+                "server": null,
+                "status": 404
+              }
+            },
+            "security_headers": {
+              "csp": false,
+              "frame_options": true,
+              "hsts": true,
+              "nosniff": true
+            },
+            "status": 404
+          },
+          "name": "https",
+          "port": 443,
+          "probe": null,
+          "product": null,
+          "protocol": "tcp",
+          "state": "open",
+          "version": null
+        }
+      ],
+      "snmp": {},
+      "sys_descr": null,
+      "tags": [],
+      "trust": "internal",
+      "uptime_seconds": null,
+      "vendor": null,
+      "vlan": null,
+      "wan_interfaces": [],
+      "zone": "subnet-192-168-1-0_24"
+    },
+    {
+      "arp": [],
+      "asset_tag": null,
+      "config": {},
+      "criticality": 2,
+      "device_type": "unknown",
+      "discovery_sources": [
+        "sweep"
+      ],
+      "documented": false,
+      "exposed_to_wan": false,
+      "fdb": [],
+      "finding_ids": [
+        "NM-ASSET-001@ip:192.168.1.12"
+      ],
+      "firmware": null,
+      "hostname": "xyzYU",
+      "id": "ip:192.168.1.12",
+      "interfaces": [],
+      "inventory": {},
+      "ip": "192.168.1.12",
+      "last_boot": null,
+      "last_seen": "2026-09-27T04:24:49Z",
+      "mac": null,
+      "model": null,
+      "neighbors": [],
+      "notes": [],
+      "os_eol": null,
+      "os_eol_basis": null,
+      "os_family": null,
+      "os_version": null,
+      "raw": {
+        "accepted_findings": 0,
+        "component": 1,
+        "component_size": 1,
+        "degree": 0,
+        "findings_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "info": 0,
+          "low": 0,
+          "medium": 1
+        },
+        "is_articulation_point": false,
+        "isolated": true,
+        "uplinks_from_links": 0
+      },
+      "reachable": true,
+      "risk_score": 3.6,
+      "role": null,
+      "routes": [],
+      "serial": null,
+      "services": [
+        {
+          "banner": null,
+          "certificate": null,
+          "confidence": 0.6,
+          "config": {},
+          "cpe": null,
+          "encryption": "none",
+          "extrainfo": null,
+          "http": {},
+          "name": "msrpc",
+          "port": 135,
+          "probe": null,
+          "product": null,
+          "protocol": "tcp",
+          "state": "open",
+          "version": null
+        },
+        {
+          "banner": null,
+          "certificate": null,
+          "confidence": 0.6,
+          "config": {
+            "cleartext_expected_tls": false
+          },
+          "cpe": null,
+          "encryption": "none",
+          "extrainfo": null,
+          "http": {},
+          "name": "netbios-ssn",
+          "port": 139,
+          "probe": null,
+          "product": null,
+          "protocol": "tcp",
+          "state": "open",
+          "version": null
+        },
+        {
+          "banner": null,
+          "certificate": null,
+          "confidence": 0.6,
+          "config": {
+            "cleartext_expected_tls": false
+          },
+          "cpe": null,
+          "encryption": "none",
+          "extrainfo": null,
+          "http": {},
+          "name": "microsoft-ds",
+          "port": 445,
+          "probe": null,
+          "product": null,
+          "protocol": "tcp",
+          "state": "open",
+          "version": null
+        },
+        {
+          "banner": ">\u0000\u0000\u0000\ufffdj\u0004Host 'xyzYU' is not allowed to connect to this MySQL server",
+          "certificate": null,
+          "confidence": 0.75,
+          "config": {
+            "cleartext_expected_tls": false
+          },
+          "cpe": null,
+          "encryption": "none",
+          "extrainfo": null,
+          "http": {},
+          "name": "mysql",
+          "port": 3306,
+          "probe": "mysql",
+          "product": null,
+          "protocol": "tcp",
+          "state": "open",
+          "version": null
+        },
+        {
+          "banner": null,
+          "certificate": null,
+          "confidence": 0.6,
+          "config": {
+            "cleartext_expected_tls": false
+          },
+          "cpe": null,
+          "encryption": "none",
+          "extrainfo": null,
+          "http": {},
+          "name": "postgresql",
+          "port": 5432,
+          "probe": null,
+          "product": null,
+          "protocol": "tcp",
+          "state": "open",
+          "version": null
+        }
+      ],
+      "snmp": {},
+      "sys_descr": null,
+      "tags": [],
+      "trust": "internal",
+      "uptime_seconds": null,
+      "vendor": null,
+      "vlan": null,
+      "wan_interfaces": [],
+      "zone": "subnet-192-168-1-0_24"
+    }
+  ],
+  "drift": null,
+  "duration_seconds": 8.1,
+  "errors": [],
+  "findings": [
+    {
+      "confidence": 1.0,
+      "criticality": 2,
+      "description": "TLS 1.0/1.1 and SSLv3 are deprecated by every major standard and fail PCI DSS 4.0 requirement 4.2.1; CBC padding and downgrade handling in these versions have practical attacks against them.",
+      "device_type": "web",
+      "evidence": [
+        {
+          "text": "443/tcp negotiated TLSv1.3 with TLS_AES_256_GCM_SHA384"
+        }
+      ],
+      "exposed": false,
+      "fingerprint": "35ca693a18326452",
+      "first_seen": "2026-09-27T04:24:53Z",
+      "id": "NM-TLS-001@ip:192.168.1.1",
+      "impact": null,
+      "likelihood": "6.0",
+      "refs": {
+        "attack": "T1557.004",
+        "cis": "13.1",
+        "cwe": "CWE-326",
+        "nist": "SC-8,SC-13"
+      },
+      "remediation": "Set `minprocversion`/`ssl protocol` to TLSv1.2 minimum, prefer TLSv1.3, and disable RSA key-exchange and non-AEAD cipher suites.",
+      "rule_id": "NM-TLS-001",
+      "rule_title": "Deprecated TLS version negotiated",
+      "rule_version": "3",
+      "scope": "device",
+      "score": 4.8,
+      "severity": "high",
+      "status": "open",
+      "status_note": null,
+      "target_id": "ip:192.168.1.1",
+      "target_label": "Unit (192.168.1.1)",
+      "zone": "subnet-192-168-1-0_24"
+    },
+    {
+      "confidence": 0.75,
+      "criticality": 2,
+      "description": "Anything responding that the CMDB does not know about is either unmanaged, unpatched, or intentionally installed by someone. Each case needs an owner, an OS baseline and a patch plan.",
+      "device_type": "web",
+      "evidence": [
+        {
+          "text": "192.168.1.1 (Unit) type=web vendor= not present in the inventory export"
+        },
+        {
+          "text": "open ports: 443"
+        }
+      ],
+      "exposed": false,
+      "fingerprint": "6fe9f6e5881a65c1",
+      "first_seen": "2026-09-27T04:24:53Z",
+      "id": "NM-ASSET-001@ip:192.168.1.1",
+      "impact": null,
+      "likelihood": "6.0",
+      "refs": {
+        "attack": "T1590.003",
+        "cis": "1.1,1.2",
+        "cwe": "CWE-1188",
+        "nist": "CM-8,CM-6"
+      },
+      "remediation": "Identify the owner from DHCP leases/switch port + MAC OUI, then either add it to inventory with a security baseline or remove it from the network.",
+      "rule_id": "NM-ASSET-001",
+      "rule_title": "Undocumented device on the network",
+      "rule_version": "3",
+      "scope": "device",
+      "score": 3.6,
+      "severity": "medium",
+      "status": "open",
+      "status_note": null,
+      "target_id": "ip:192.168.1.1",
+      "target_label": "Unit (192.168.1.1)",
+      "zone": "subnet-192-168-1-0_24"
+    },
+    {
+      "confidence": 0.75,
+      "criticality": 2,
+      "description": "Anything responding that the CMDB does not know about is either unmanaged, unpatched, or intentionally installed by someone. Each case needs an owner, an OS baseline and a patch plan.",
+      "device_type": "unknown",
+      "evidence": [
+        {
+          "text": "192.168.1.12 (xyzYU) type=unknown vendor= not present in the inventory export"
+        },
+        {
+          "text": "open ports: 135, 139, 445, 3306, 5432"
+        }
+      ],
+      "exposed": false,
+      "fingerprint": "502a450b51237345",
+      "first_seen": "2026-09-27T04:24:53Z",
+      "id": "NM-ASSET-001@ip:192.168.1.12",
+      "impact": null,
+      "likelihood": "6.0",
+      "refs": {
+        "attack": "T1590.003",
+        "cis": "1.1,1.2",
+        "cwe": "CWE-1188",
+        "nist": "CM-8,CM-6"
+      },
+      "remediation": "Identify the owner from DHCP leases/switch port + MAC OUI, then either add it to inventory with a security baseline or remove it from the network.",
+      "rule_id": "NM-ASSET-001",
+      "rule_title": "Undocumented device on the network",
+      "rule_version": "3",
+      "scope": "device",
+      "score": 3.6,
+      "severity": "medium",
+      "status": "open",
+      "status_note": null,
+      "target_id": "ip:192.168.1.12",
+      "target_label": "xyzYU (192.168.1.12)",
+      "zone": "subnet-192-168-1-0_24"
+    },
+    {
+      "confidence": 1.0,
+      "criticality": 2,
+      "description": "A name mismatch means the certificate cannot be validated as belonging to this endpoint, and strict clients will refuse it or be configured to ignore the error.",
+      "device_type": "web",
+      "evidence": [
+        {
+          "text": "requested Unit; certificate names none"
+        },
+        {
+          "text": "name source: common_name"
+        }
+      ],
+      "exposed": false,
+      "fingerprint": "042f118cd821a7c6",
+      "first_seen": "2026-09-27T04:24:53Z",
+      "id": "NM-CERT-004@ip:192.168.1.1",
+      "impact": null,
+      "likelihood": "5.0",
+      "refs": {
+        "cwe": "CWE-295",
+        "nist": "IA-5(2)"
+      },
+      "remediation": "Reissue with the DNS name and IP SANs the clients actually use.",
+      "rule_id": "NM-CERT-004",
+      "rule_title": "Certificate hostname does not match the presented name",
+      "rule_version": "1",
+      "scope": "device",
+      "score": 3.0,
+      "severity": "medium",
+      "status": "open",
+      "status_note": null,
+      "target_id": "ip:192.168.1.1",
+      "target_label": "Unit (192.168.1.1)",
+      "zone": "subnet-192-168-1-0_24"
+    }
+  ],
+  "finished": "2026-09-27T04:24:53Z",
+  "links": [],
+  "mode": "live",
+  "notes": [
+    "Discovery is read-only: no SNMP SET, no login attempts, no exploit payloads."
+  ],
+  "operator": "web-operator",
+  "risk": {
+    "accepted_findings": 0,
+    "band": "High",
+    "band_scale": [
+      {
+        "label": "Critical",
+        "min": 9.0
+      },
+      {
+        "label": "High",
+        "min": 7.0
+      },
+      {
+        "label": "Moderate",
+        "min": 4.5
+      },
+      {
+        "label": "Low",
+        "min": 2.0
+      },
+      {
+        "label": "Minimal",
+        "min": 0.0
+      }
+    ],
+    "components": {
+      "architecture_index": 4.0,
+      "coverage_penalty": 1.2,
+      "exposure_index": 1.75,
+      "structural_penalty": 1.5,
+      "weighted_device_risk": 5.63,
+      "worst_device_risk": 7.67
+    },
+    "counts": {
+      "critical": 0,
+      "high": 1,
+      "info": 0,
+      "low": 0,
+      "medium": 3
+    },
+    "families": {
+      "ASSET": {
+        "count": 2,
+        "score": 7.2,
+        "share_pct": 48.0,
+        "worst": "medium"
+      },
+      "CERT": {
+        "count": 1,
+        "score": 3.0,
+        "share_pct": 20.0,
+        "worst": "medium"
+      },
+      "TLS": {
+        "count": 1,
+        "score": 4.8,
+        "share_pct": 32.0,
+        "worst": "high"
+      }
+    },
+    "open_findings": 4,
+    "score": 8.24,
+    "structure": {
+      "bridge_rate": 0.0,
+      "bridges": 0,
+      "isolated_nodes": 2,
+      "link_coverage_pct": 0.0,
+      "links": 1,
+      "nodes": 2
+    },
+    "total_findings": 4
+  },
+  "scanner_version": "1.0.0",
+  "schema_version": "1.0",
+  "snapshot_id": "snap-20260927T042445Z",
+  "started": "1970-01-06T01:52:49Z",
+  "summary": {
+    "accepted_risk": 0,
+    "device_types": {
+      "unknown": 1,
+      "web": 1
+    },
+    "devices": {
+      "by_type": {
+        "unknown": 1,
+        "web": 1
+      },
+      "documented": 0,
+      "exposed_to_wan": 0,
+      "ips": [
+        "192.168.1.1",
+        "192.168.1.12"
+      ],
+      "ports_open": [
+        135,
+        139,
+        443,
+        445,
+        3306,
+        5432
+      ],
+      "reachable": 2,
+      "total": 2,
+      "undocumented": 2,
+      "undocumented_pct": 100.0,
+      "with_eol": 0
+    },
+    "findings": {
+      "critical": 0,
+      "high": 1,
+      "info": 0,
+      "low": 0,
+      "medium": 3,
+      "total": 4
+    },
+    "generated_at": "2026-09-27T04:24:53Z",
+    "links": 0,
+    "mode": "live",
+    "open_findings": 4,
+    "risk": {
+      "accepted_findings": 0,
+      "band": "High",
+      "band_scale": [
+        {
+          "label": "Critical",
+          "min": 9.0
+        },
+        {
+          "label": "High",
+          "min": 7.0
+        },
+        {
+          "label": "Moderate",
+          "min": 4.5
+        },
+        {
+          "label": "Low",
+          "min": 2.0
+        },
+        {
+          "label": "Minimal",
+          "min": 0.0
+        }
+      ],
+      "components": {
+        "architecture_index": 4.0,
+        "coverage_penalty": 1.2,
+        "exposure_index": 1.75,
+        "structural_penalty": 1.5,
+        "weighted_device_risk": 5.63,
+        "worst_device_risk": 7.67
+      },
+      "counts": {
+        "critical": 0,
+        "high": 1,
+        "info": 0,
+        "low": 0,
+        "medium": 3
+      },
+      "families": {
+        "ASSET": {
+          "count": 2,
+          "score": 7.2,
+          "share_pct": 48.0,
+          "worst": "medium"
+        },
+        "CERT": {
+          "count": 1,
+          "score": 3.0,
+          "share_pct": 20.0,
+          "worst": "medium"
+        },
+        "TLS": {
+          "count": 1,
+          "score": 4.8,
+          "share_pct": 32.0,
+          "worst": "high"
+        }
+      },
+      "open_findings": 4,
+      "score": 8.24,
+      "structure": {
+        "bridge_rate": 0.0,
+        "bridges": 0,
+        "isolated_nodes": 2,
+        "link_coverage_pct": 0.0,
+        "links": 1,
+        "nodes": 2
+      },
+      "total_findings": 4
+    },
+    "risk_band": "High",
+    "scan_errors": 0,
+    "services": [
+      {
+        "cleartext": 0,
+        "devices": 1,
+        "name": "https",
+        "ports": [
+          443
+        ],
+        "products": []
+      },
+      {
+        "cleartext": 1,
+        "devices": 1,
+        "name": "msrpc",
+        "ports": [
+          135
+        ],
+        "products": []
+      },
+      {
+        "cleartext": 1,
+        "devices": 1,
+        "name": "netbios-ssn",
+        "ports": [
+          139
+        ],
+        "products": []
+      },
+      {
+        "cleartext": 1,
+        "devices": 1,
+        "name": "microsoft-ds",
+        "ports": [
+          445
+        ],
+        "products": []
+      },
+      {
+        "cleartext": 1,
+        "devices": 1,
+        "name": "mysql",
+        "ports": [
+          3306
+        ],
+        "products": []
+      },
+      {
+        "cleartext": 1,
+        "devices": 1,
+        "name": "postgresql",
+        "ports": [
+          5432
+        ],
+        "products": []
+      }
+    ],
+    "top_findings": [
+      {
+        "rule": "NM-TLS-001",
+        "score": 4.8,
+        "severity": "high",
+        "target": "Unit (192.168.1.1)",
+        "title": "Deprecated TLS version negotiated"
+      },
+      {
+        "rule": "NM-ASSET-001",
+        "score": 3.6,
+        "severity": "medium",
+        "target": "Unit (192.168.1.1)",
+        "title": "Undocumented device on the network"
+      },
+      {
+        "rule": "NM-ASSET-001",
+        "score": 3.6,
+        "severity": "medium",
+        "target": "xyzYU (192.168.1.12)",
+        "title": "Undocumented device on the network"
+      },
+      {
+        "rule": "NM-CERT-004",
+        "score": 3.0,
+        "severity": "medium",
+        "target": "Unit (192.168.1.1)",
+        "title": "Certificate hostname does not match the presented name"
+      }
+    ],
+    "topology": {
+      "articulation_points": 0,
+      "bridges": 0,
+      "components": 2,
+      "edges": 0,
+      "isolated_nodes": 2,
+      "largest_component": 1,
+      "link_coverage_pct": 0.0,
+      "mean_degree": 0.0,
+      "nodes": 2,
+      "redundant_pairs": 0,
+      "trust_crossings": []
+    },
+    "zones": 10,
+    "zones_by_trust": {
+      "dmz": 1,
+      "internal": 4,
+      "out_of_band": 1,
+      "restricted": 2,
+      "untrusted": 2
+    }
+  },
+  "targets": [
+    "192.168.1.1",
+    "192.168.1.2",
+    "192.168.1.3",
+    "192.168.1.4",
+    "192.168.1.5",
+    "192.168.1.6",
+    "192.168.1.7",
+    "192.168.1.8",
+    "192.168.1.9",
+    "192.168.1.10",
+    "192.168.1.11",
+    "192.168.1.12",
+    "192.168.1.13",
+    "192.168.1.14",
+    "192.168.1.15",
+    "192.168.1.16",
+    "192.168.1.17",
+    "192.168.1.18",
+    "192.168.1.19",
+    "192.168.1.20",
+    "192.168.1.21",
+    "192.168.1.22",
+    "192.168.1.23",
+    "192.168.1.24",
+    "192.168.1.25",
+    "192.168.1.26",
+    "192.168.1.27",
+    "192.168.1.28",
+    "192.168.1.29",
+    "192.168.1.30",
+    "192.168.1.31",
+    "192.168.1.32",
+    "192.168.1.33",
+    "192.168.1.34",
+    "192.168.1.35",
+    "192.168.1.36",
+    "192.168.1.37",
+    "192.168.1.38",
+    "192.168.1.39",
+    "192.168.1.40",
+    "192.168.1.41",
+    "192.168.1.42",
+    "192.168.1.43",
+    "192.168.1.44",
+    "192.168.1.45",
+    "192.168.1.46",
+    "192.168.1.47",
+    "192.168.1.48",
+    "192.168.1.49",
+    "192.168.1.50",
+    "192.168.1.51",
+    "192.168.1.52",
+    "192.168.1.53",
+    "192.168.1.54",
+    "192.168.1.55",
+    "192.168.1.56",
+    "192.168.1.57",
+    "192.168.1.58",
+    "192.168.1.59",
+    "192.168.1.60",
+    "192.168.1.61",
+    "192.168.1.62",
+    "192.168.1.63",
+    "192.168.1.64",
+    "192.168.1.65",
+    "192.168.1.66",
+    "192.168.1.67",
+    "192.168.1.68",
+    "192.168.1.69",
+    "192.168.1.70",
+    "192.168.1.71",
+    "192.168.1.72",
+    "192.168.1.73",
+    "192.168.1.74",
+    "192.168.1.75",
+    "192.168.1.76",
+    "192.168.1.77",
+    "192.168.1.78",
+    "192.168.1.79",
+    "192.168.1.80",
+    "192.168.1.81",
+    "192.168.1.82",
+    "192.168.1.83",
+    "192.168.1.84",
+    "192.168.1.85",
+    "192.168.1.86",
+    "192.168.1.87",
+    "192.168.1.88",
+    "192.168.1.89",
+    "192.168.1.90",
+    "192.168.1.91",
+    "192.168.1.92",
+    "192.168.1.93",
+    "192.168.1.94",
+    "192.168.1.95",
+    "192.168.1.96",
+    "192.168.1.97",
+    "192.168.1.98",
+    "192.168.1.99",
+    "192.168.1.100",
+    "192.168.1.101",
+    "192.168.1.102",
+    "192.168.1.103",
+    "192.168.1.104",
+    "192.168.1.105",
+    "192.168.1.106",
+    "192.168.1.107",
+    "192.168.1.108",
+    "192.168.1.109",
+    "192.168.1.110",
+    "192.168.1.111",
+    "192.168.1.112",
+    "192.168.1.113",
+    "192.168.1.114",
+    "192.168.1.115",
+    "192.168.1.116",
+    "192.168.1.117",
+    "192.168.1.118",
+    "192.168.1.119",
+    "192.168.1.120",
+    "192.168.1.121",
+    "192.168.1.122",
+    "192.168.1.123",
+    "192.168.1.124",
+    "192.168.1.125",
+    "192.168.1.126",
+    "192.168.1.127",
+    "192.168.1.128",
+    "192.168.1.129",
+    "192.168.1.130",
+    "192.168.1.131",
+    "192.168.1.132",
+    "192.168.1.133",
+    "192.168.1.134",
+    "192.168.1.135",
+    "192.168.1.136",
+    "192.168.1.137",
+    "192.168.1.138",
+    "192.168.1.139",
+    "192.168.1.140",
+    "192.168.1.141",
+    "192.168.1.142",
+    "192.168.1.143",
+    "192.168.1.144",
+    "192.168.1.145",
+    "192.168.1.146",
+    "192.168.1.147",
+    "192.168.1.148",
+    "192.168.1.149",
+    "192.168.1.150",
+    "192.168.1.151",
+    "192.168.1.152",
+    "192.168.1.153",
+    "192.168.1.154",
+    "192.168.1.155",
+    "192.168.1.156",
+    "192.168.1.157",
+    "192.168.1.158",
+    "192.168.1.159",
+    "192.168.1.160",
+    "192.168.1.161",
+    "192.168.1.162",
+    "192.168.1.163",
+    "192.168.1.164",
+    "192.168.1.165",
+    "192.168.1.166",
+    "192.168.1.167",
+    "192.168.1.168",
+    "192.168.1.169",
+    "192.168.1.170",
+    "192.168.1.171",
+    "192.168.1.172",
+    "192.168.1.173",
+    "192.168.1.174",
+    "192.168.1.175",
+    "192.168.1.176",
+    "192.168.1.177",
+    "192.168.1.178",
+    "192.168.1.179",
+    "192.168.1.180",
+    "192.168.1.181",
+    "192.168.1.182",
+    "192.168.1.183",
+    "192.168.1.184",
+    "192.168.1.185",
+    "192.168.1.186",
+    "192.168.1.187",
+    "192.168.1.188",
+    "192.168.1.189",
+    "192.168.1.190",
+    "192.168.1.191",
+    "192.168.1.192",
+    "192.168.1.193",
+    "192.168.1.194",
+    "192.168.1.195",
+    "192.168.1.196",
+    "192.168.1.197",
+    "192.168.1.198",
+    "192.168.1.199",
+    "192.168.1.200",
+    "192.168.1.201",
+    "192.168.1.202",
+    "192.168.1.203",
+    "192.168.1.204",
+    "192.168.1.205",
+    "192.168.1.206",
+    "192.168.1.207",
+    "192.168.1.208",
+    "192.168.1.209",
+    "192.168.1.210",
+    "192.168.1.211",
+    "192.168.1.212",
+    "192.168.1.213",
+    "192.168.1.214",
+    "192.168.1.215",
+    "192.168.1.216",
+    "192.168.1.217",
+    "192.168.1.218",
+    "192.168.1.219",
+    "192.168.1.220",
+    "192.168.1.221",
+    "192.168.1.222",
+    "192.168.1.223",
+    "192.168.1.224",
+    "192.168.1.225",
+    "192.168.1.226",
+    "192.168.1.227",
+    "192.168.1.228",
+    "192.168.1.229",
+    "192.168.1.230",
+    "192.168.1.231",
+    "192.168.1.232",
+    "192.168.1.233",
+    "192.168.1.234",
+    "192.168.1.235",
+    "192.168.1.236",
+    "192.168.1.237",
+    "192.168.1.238",
+    "192.168.1.239",
+    "192.168.1.240",
+    "192.168.1.241",
+    "192.168.1.242",
+    "192.168.1.243",
+    "192.168.1.244",
+    "192.168.1.245",
+    "192.168.1.246",
+    "192.168.1.247",
+    "192.168.1.248",
+    "192.168.1.249",
+    "192.168.1.250",
+    "192.168.1.251",
+    "192.168.1.252",
+    "192.168.1.253",
+    "192.168.1.254"
+  ],
+  "zones": [
+    {
+      "cidrs": [],
+      "default_gateway": null,
+      "description": "Internet-facing / perimeter segment",
+      "device_count": 0,
+      "name": "wan-edge",
+      "segmentation_enforced": true,
+      "segmentation_note": null,
+      "trust": "untrusted",
+      "vlans": [
+        10
+      ]
+    },
+    {
+      "cidrs": [],
+      "default_gateway": null,
+      "description": "Public services",
+      "device_count": 0,
+      "name": "dmz",
+      "segmentation_enforced": true,
+      "segmentation_note": null,
+      "trust": "dmz",
+      "vlans": [
+        20
+      ]
+    },
+    {
+      "cidrs": [],
+      "default_gateway": null,
+      "description": "Core/distribution switching and routing",
+      "device_count": 0,
+      "name": "core",
+      "segmentation_enforced": true,
+      "segmentation_note": null,
+      "trust": "internal",
+      "vlans": [
+        100
+      ]
+    },
+    {
+      "cidrs": [],
+      "default_gateway": null,
+      "description": "Application + database tiers",
+      "device_count": 0,
+      "name": "server-farm",
+      "segmentation_enforced": true,
+      "segmentation_note": null,
+      "trust": "restricted",
+      "vlans": [
+        110,
+        120
+      ]
+    },
+    {
+      "cidrs": [],
+      "default_gateway": null,
+      "description": "SAN/NAS and backup",
+      "device_count": 0,
+      "name": "storage",
+      "segmentation_enforced": true,
+      "segmentation_note": null,
+      "trust": "restricted",
+      "vlans": [
+        130
+      ]
+    },
+    {
+      "cidrs": [],
+      "default_gateway": null,
+      "description": "OOB device management",
+      "device_count": 0,
+      "name": "management",
+      "segmentation_enforced": true,
+      "segmentation_note": null,
+      "trust": "out_of_band",
+      "vlans": [
+        999
+      ]
+    },
+    {
+      "cidrs": [],
+      "default_gateway": null,
+      "description": "User access layer and wireless",
+      "device_count": 0,
+      "name": "access",
+      "segmentation_enforced": true,
+      "segmentation_note": null,
+      "trust": "internal",
+      "vlans": [
+        200,
+        210
+      ]
+    },
+    {
+      "cidrs": [],
+      "default_gateway": null,
+      "description": "Cameras, badges, AV",
+      "device_count": 0,
+      "name": "iot",
+      "segmentation_enforced": true,
+      "segmentation_note": null,
+      "trust": "internal",
+      "vlans": [
+        300
+      ]
+    },
+    {
+      "cidrs": [],
+      "default_gateway": null,
+      "description": "BYOD / guest",
+      "device_count": 0,
+      "name": "guest",
+      "segmentation_enforced": true,
+      "segmentation_note": null,
+      "trust": "untrusted",
+      "vlans": [
+        400
+      ]
+    },
+    {
+      "cidrs": [
+        "192.168.1.0/24"
+      ],
+      "default_gateway": null,
+      "description": "auto-derived from discovered address space (not in config.zones)",
+      "device_count": 2,
+      "name": "subnet-192-168-1-0_24",
+      "segmentation_enforced": false,
+      "segmentation_note": null,
+      "trust": "internal",
+      "vlans": []
+    }
+  ]
+}

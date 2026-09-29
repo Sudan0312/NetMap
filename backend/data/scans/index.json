@@ -1,0 +1,2404 @@
+[
+  {
+    "snapshot_id": "snap-20260928T172109Z",
+    "scan_id": "snap-20260928T172109Z",
+    "target": "192.168.1.0/24",
+    "targets": [
+      "192.168.1.0/24"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "normal",
+    "started": "1970-01-02T08:20:47Z",
+    "finished": "2026-09-28T17:21:23Z",
+    "duration": 14.54,
+    "devices": 5,
+    "links": 4,
+    "services": 1,
+    "findings": 9,
+    "status": "completed",
+    "job_id": "f198ad6d51bc"
+  },
+  {
+    "snapshot_id": "snap-20260928T170948Z",
+    "scan_id": "snap-20260928T170948Z",
+    "target": "192.168.1.1",
+    "targets": [
+      "192.168.1.1"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "fast",
+    "started": "1970-01-02T08:09:26Z",
+    "finished": "2026-09-28T17:09:50Z",
+    "duration": 2.34,
+    "devices": 1,
+    "links": 0,
+    "services": 1,
+    "findings": 1,
+    "status": "completed",
+    "job_id": "43e7c04d5c12"
+  },
+  {
+    "snapshot_id": "snap-20260928T170944Z",
+    "scan_id": "snap-20260928T170944Z",
+    "target": "127.0.0.1/32",
+    "targets": [
+      "127.0.0.1/32"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "fast",
+    "started": "1970-01-02T08:09:23Z",
+    "finished": "2026-09-28T17:09:47Z",
+    "duration": 2.39,
+    "devices": 1,
+    "links": 0,
+    "services": 1,
+    "findings": 1,
+    "status": "completed",
+    "job_id": "8b13b27d547d"
+  },
+  {
+    "snapshot_id": "snap-20260928T170942Z-1c55",
+    "scan_id": "snap-20260928T170942Z-1c55",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-21"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T17:09:42Z",
+    "finished": "2026-09-28T17:09:44Z",
+    "duration": 3.82,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "19929434708c"
+  },
+  {
+    "snapshot_id": "snap-20260928T170936Z-264a",
+    "scan_id": "snap-20260928T170936Z-264a",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T17:09:36Z",
+    "finished": "2026-09-28T17:09:39Z",
+    "duration": 4.41,
+    "devices": 33,
+    "links": 29,
+    "services": 110,
+    "findings": 94,
+    "status": "completed",
+    "job_id": "7f8e42fba09c"
+  },
+  {
+    "snapshot_id": "snap-20260928T170926Z-a854",
+    "scan_id": "snap-20260928T170926Z-a854",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T17:09:26Z",
+    "finished": "2026-09-28T17:09:33Z",
+    "duration": 8.57,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "82150bbb53ce"
+  },
+  {
+    "snapshot_id": "snap-20260928T170921Z-1a8c",
+    "scan_id": "snap-20260928T170921Z-1a8c",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-8"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T17:09:21Z",
+    "finished": "2026-09-28T17:09:24Z",
+    "duration": 4.67,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "b97b369949cc"
+  },
+  {
+    "snapshot_id": "snap-20260928T170915Z-8fe6",
+    "scan_id": "snap-20260928T170915Z-8fe6",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T17:09:15Z",
+    "finished": "2026-09-28T17:09:18Z",
+    "duration": 4.34,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "f33d313031a5"
+  },
+  {
+    "snapshot_id": "snap-20260928T170647Z",
+    "scan_id": "snap-20260928T170647Z",
+    "target": "192.168.1.1, 192.168.1.12",
+    "targets": [
+      "192.168.1.1",
+      "192.168.1.12"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "fast",
+    "started": "1970-01-02T08:06:26Z",
+    "finished": "2026-09-28T17:06:51Z",
+    "duration": 3.77,
+    "devices": 1,
+    "links": 0,
+    "services": 1,
+    "findings": 1,
+    "status": "completed",
+    "job_id": "55dd17959022"
+  },
+  {
+    "snapshot_id": "snap-20260928T170637Z",
+    "scan_id": "snap-20260928T170637Z",
+    "target": "192.168.1.1, 192.168.1.12",
+    "targets": [
+      "192.168.1.1",
+      "192.168.1.12"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "fast",
+    "started": "1970-01-02T08:06:16Z",
+    "finished": "2026-09-28T17:06:40Z",
+    "duration": 3.09,
+    "devices": 1,
+    "links": 0,
+    "services": 1,
+    "findings": 1,
+    "status": "completed",
+    "job_id": "4602a9f60ef3"
+  },
+  {
+    "snapshot_id": "snap-20260928T170634Z",
+    "scan_id": "snap-20260928T170634Z",
+    "target": "127.0.0.1/32",
+    "targets": [
+      "127.0.0.1/32"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "fast",
+    "started": "1970-01-02T08:06:12Z",
+    "finished": "2026-09-28T17:06:36Z",
+    "duration": 2.55,
+    "devices": 1,
+    "links": 0,
+    "services": 1,
+    "findings": 1,
+    "status": "completed",
+    "job_id": "90bfd3e4170c"
+  },
+  {
+    "snapshot_id": "snap-20260928T170631Z-f33e",
+    "scan_id": "snap-20260928T170631Z-f33e",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-21"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T17:06:31Z",
+    "finished": "2026-09-28T17:06:34Z",
+    "duration": 4.31,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "139acc66c55d"
+  },
+  {
+    "snapshot_id": "snap-20260928T170627Z-2900",
+    "scan_id": "snap-20260928T170627Z-2900",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T17:06:27Z",
+    "finished": "2026-09-28T17:06:29Z",
+    "duration": 4.07,
+    "devices": 33,
+    "links": 29,
+    "services": 110,
+    "findings": 94,
+    "status": "completed",
+    "job_id": "2d66f99d823d"
+  },
+  {
+    "snapshot_id": "snap-20260928T170622Z-bf21",
+    "scan_id": "snap-20260928T170622Z-bf21",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T17:06:22Z",
+    "finished": "2026-09-28T17:06:25Z",
+    "duration": 4.47,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "f7b19aceebdd"
+  },
+  {
+    "snapshot_id": "snap-20260928T170616Z-2dd5",
+    "scan_id": "snap-20260928T170616Z-2dd5",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-8"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T17:06:16Z",
+    "finished": "2026-09-28T17:06:20Z",
+    "duration": 5.22,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "ad82e90a0d67"
+  },
+  {
+    "snapshot_id": "snap-20260928T170611Z-8645",
+    "scan_id": "snap-20260928T170611Z-8645",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T17:06:11Z",
+    "finished": "2026-09-28T17:06:14Z",
+    "duration": 5.02,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "66479eea74a1"
+  },
+  {
+    "snapshot_id": "snap-20260928T170543Z",
+    "scan_id": "snap-20260928T170543Z",
+    "target": "127.0.0.1/32",
+    "targets": [
+      "127.0.0.1/32"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "fast",
+    "started": "1970-01-02T08:05:21Z",
+    "finished": "2026-09-28T17:05:46Z",
+    "duration": 2.79,
+    "devices": 1,
+    "links": 0,
+    "services": 1,
+    "findings": 1,
+    "status": "completed",
+    "job_id": "3c8eb324d820"
+  },
+  {
+    "snapshot_id": "snap-20260928T170538Z-a672",
+    "scan_id": "snap-20260928T170538Z-a672",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-21"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T17:05:38Z",
+    "finished": "2026-09-28T17:05:42Z",
+    "duration": 5.64,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "9cf220f63139"
+  },
+  {
+    "snapshot_id": "snap-20260928T170530Z-4784",
+    "scan_id": "snap-20260928T170530Z-4784",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T17:05:30Z",
+    "finished": "2026-09-28T17:05:35Z",
+    "duration": 6.61,
+    "devices": 33,
+    "links": 29,
+    "services": 110,
+    "findings": 94,
+    "status": "completed",
+    "job_id": "79b380589cea"
+  },
+  {
+    "snapshot_id": "snap-20260928T170525Z-e62c",
+    "scan_id": "snap-20260928T170525Z-e62c",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T17:05:25Z",
+    "finished": "2026-09-28T17:05:28Z",
+    "duration": 4.69,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "067ffe7685f2"
+  },
+  {
+    "snapshot_id": "snap-20260928T170519Z-56cb",
+    "scan_id": "snap-20260928T170519Z-56cb",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-8"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T17:05:19Z",
+    "finished": "2026-09-28T17:05:23Z",
+    "duration": 5.11,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "9a40a6737dd5"
+  },
+  {
+    "snapshot_id": "snap-20260928T170514Z-9843",
+    "scan_id": "snap-20260928T170514Z-9843",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T17:05:14Z",
+    "finished": "2026-09-28T17:05:17Z",
+    "duration": 4.74,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "eca2363ae816"
+  },
+  {
+    "snapshot_id": "snap-20260928T164603Z",
+    "scan_id": "snap-20260928T164603Z",
+    "target": "192.168.1.0/24",
+    "targets": [
+      "192.168.1.0/24"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "normal",
+    "started": "1970-01-02T07:45:42Z",
+    "finished": "2026-09-28T16:46:19Z",
+    "duration": 15.68,
+    "devices": 5,
+    "links": 0,
+    "services": 1,
+    "findings": 9,
+    "status": "completed",
+    "job_id": "2793572b64de"
+  },
+  {
+    "snapshot_id": "snap-20260928T162715Z",
+    "scan_id": "snap-20260928T162715Z",
+    "target": "192.168.1.0/24",
+    "targets": [
+      "192.168.1.0/24"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "deep",
+    "started": "1970-01-02T07:26:53Z",
+    "finished": "2026-09-28T16:27:56Z",
+    "duration": 41.68,
+    "devices": 7,
+    "links": 0,
+    "services": 4,
+    "findings": 11,
+    "status": "completed",
+    "job_id": "e697da94f990"
+  },
+  {
+    "snapshot_id": "snap-20260928T162534Z-190a",
+    "scan_id": "snap-20260928T162534Z-190a",
+    "target": "demo:medium",
+    "targets": [
+      "demo:medium:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T16:25:34Z",
+    "finished": "2026-09-28T16:25:41Z",
+    "duration": 9.13,
+    "devices": 50,
+    "links": 42,
+    "services": 168,
+    "findings": 141,
+    "status": "completed",
+    "job_id": "1407a26ce999"
+  },
+  {
+    "snapshot_id": "snap-20260928T162302Z-9b89",
+    "scan_id": "snap-20260928T162302Z-9b89",
+    "target": "demo:medium",
+    "targets": [
+      "demo:medium:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T16:23:02Z",
+    "finished": "2026-09-28T16:23:09Z",
+    "duration": 9.11,
+    "devices": 50,
+    "links": 42,
+    "services": 168,
+    "findings": 141,
+    "status": "completed",
+    "job_id": "92d7e835cf48"
+  },
+  {
+    "snapshot_id": "snap-20260928T162027Z",
+    "scan_id": "snap-20260928T162027Z",
+    "target": "127.0.0.1/32",
+    "targets": [
+      "127.0.0.1/32"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "fast",
+    "started": "1970-01-02T07:20:06Z",
+    "finished": "2026-09-28T16:20:30Z",
+    "duration": 3.69,
+    "devices": 1,
+    "links": 0,
+    "services": 1,
+    "findings": 1,
+    "status": "completed",
+    "job_id": "94e091ad9dae"
+  },
+  {
+    "snapshot_id": "snap-20260928T162023Z-f859",
+    "scan_id": "snap-20260928T162023Z-f859",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-21"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T16:20:23Z",
+    "finished": "2026-09-28T16:20:26Z",
+    "duration": 4.84,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "301f94dbf4f7"
+  },
+  {
+    "snapshot_id": "snap-20260928T162018Z-6457",
+    "scan_id": "snap-20260928T162018Z-6457",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T16:20:18Z",
+    "finished": "2026-09-28T16:20:21Z",
+    "duration": 4.14,
+    "devices": 33,
+    "links": 29,
+    "services": 110,
+    "findings": 94,
+    "status": "completed",
+    "job_id": "f468476510e7"
+  },
+  {
+    "snapshot_id": "snap-20260928T162013Z-88d5",
+    "scan_id": "snap-20260928T162013Z-88d5",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T16:20:13Z",
+    "finished": "2026-09-28T16:20:16Z",
+    "duration": 4.47,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "3f8d22e739c5"
+  },
+  {
+    "snapshot_id": "snap-20260928T162007Z-dcc5",
+    "scan_id": "snap-20260928T162007Z-dcc5",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-8"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T16:20:07Z",
+    "finished": "2026-09-28T16:20:10Z",
+    "duration": 4.54,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "885f0613d89e"
+  },
+  {
+    "snapshot_id": "snap-20260928T162002Z-1a6b",
+    "scan_id": "snap-20260928T162002Z-1a6b",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T16:20:02Z",
+    "finished": "2026-09-28T16:20:05Z",
+    "duration": 4.71,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "ea30e8d3f125"
+  },
+  {
+    "snapshot_id": "snap-20260928T161836Z",
+    "scan_id": "snap-20260928T161836Z",
+    "target": "127.0.0.1/32",
+    "targets": [
+      "127.0.0.1/32"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "fast",
+    "started": "1970-01-02T07:18:14Z",
+    "finished": "2026-09-28T16:18:38Z",
+    "duration": 2.66,
+    "devices": 1,
+    "links": 0,
+    "services": 1,
+    "findings": 1,
+    "status": "completed",
+    "job_id": "bf5ae3d3cca7"
+  },
+  {
+    "snapshot_id": "snap-20260928T161832Z-d5cf",
+    "scan_id": "snap-20260928T161832Z-d5cf",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-21"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T16:18:32Z",
+    "finished": "2026-09-28T16:18:35Z",
+    "duration": 4.29,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "ce6caa10cd1d"
+  },
+  {
+    "snapshot_id": "snap-20260928T161828Z-95ed",
+    "scan_id": "snap-20260928T161828Z-95ed",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T16:18:28Z",
+    "finished": "2026-09-28T16:18:31Z",
+    "duration": 3.99,
+    "devices": 33,
+    "links": 29,
+    "services": 110,
+    "findings": 94,
+    "status": "completed",
+    "job_id": "c847523aeb72"
+  },
+  {
+    "snapshot_id": "snap-20260928T161824Z-bee0",
+    "scan_id": "snap-20260928T161824Z-bee0",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T16:18:24Z",
+    "finished": "2026-09-28T16:18:26Z",
+    "duration": 4.2,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "4621480d743d"
+  },
+  {
+    "snapshot_id": "snap-20260928T161819Z-51c2",
+    "scan_id": "snap-20260928T161819Z-51c2",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-8"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T16:18:19Z",
+    "finished": "2026-09-28T16:18:22Z",
+    "duration": 4.56,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "5c74be53007a"
+  },
+  {
+    "snapshot_id": "snap-20260928T161813Z-f505",
+    "scan_id": "snap-20260928T161813Z-f505",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T16:18:13Z",
+    "finished": "2026-09-28T16:18:16Z",
+    "duration": 4.58,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "f64880ed8051"
+  },
+  {
+    "snapshot_id": "snap-20260928T160235Z",
+    "scan_id": "snap-20260928T160235Z",
+    "target": "192.168.1.0/24",
+    "targets": [
+      "192.168.1.0/24"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "normal",
+    "started": "1970-01-02T07:02:13Z",
+    "finished": "2026-09-28T16:02:52Z",
+    "duration": 16.88,
+    "devices": 6,
+    "links": 0,
+    "services": 6,
+    "findings": 10,
+    "status": "completed",
+    "job_id": "dcfbfc92cdd4"
+  },
+  {
+    "snapshot_id": "snap-20260928T155746Z-c208",
+    "scan_id": "snap-20260928T155746Z-c208",
+    "target": "demo:medium",
+    "targets": [
+      "demo:medium:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T15:57:46Z",
+    "finished": "2026-09-28T15:57:53Z",
+    "duration": 9.1,
+    "devices": 50,
+    "links": 42,
+    "services": 168,
+    "findings": 141,
+    "status": "completed",
+    "job_id": "4b43b10ec63f"
+  },
+  {
+    "snapshot_id": "snap-20260928T152724Z",
+    "scan_id": "snap-20260928T152724Z",
+    "target": "192.168.1.0/24",
+    "targets": [
+      "192.168.1.0/24"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "normal",
+    "started": "1970-01-02T06:27:02Z",
+    "finished": "2026-09-28T15:27:43Z",
+    "duration": 19.01,
+    "devices": 4,
+    "links": 0,
+    "services": 6,
+    "findings": 6,
+    "status": "completed",
+    "job_id": "918969ee0c1e"
+  },
+  {
+    "snapshot_id": "snap-20260928T144715Z-b22d",
+    "scan_id": "snap-20260928T144715Z-b22d",
+    "target": "demo:medium",
+    "targets": [
+      "demo:medium:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T14:47:15Z",
+    "finished": "2026-09-28T14:47:23Z",
+    "duration": 9.22,
+    "devices": 50,
+    "links": 42,
+    "services": 168,
+    "findings": 141,
+    "status": "completed",
+    "job_id": "7473abc1caac"
+  },
+  {
+    "snapshot_id": "snap-20260928T144030Z",
+    "scan_id": "snap-20260928T144030Z",
+    "target": "127.0.0.1/32",
+    "targets": [
+      "127.0.0.1/32"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "fast",
+    "started": "1970-01-02T05:40:08Z",
+    "finished": "2026-09-28T14:40:33Z",
+    "duration": 3.53,
+    "devices": 1,
+    "links": 0,
+    "services": 1,
+    "findings": 1,
+    "status": "completed",
+    "job_id": "d333149dd938"
+  },
+  {
+    "snapshot_id": "snap-20260928T144024Z-2786",
+    "scan_id": "snap-20260928T144024Z-2786",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-21"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T14:40:24Z",
+    "finished": "2026-09-28T14:40:29Z",
+    "duration": 6.4,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "6b3b0313dac2"
+  },
+  {
+    "snapshot_id": "snap-20260928T144013Z-7485",
+    "scan_id": "snap-20260928T144013Z-7485",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T14:40:13Z",
+    "finished": "2026-09-28T14:40:22Z",
+    "duration": 10.59,
+    "devices": 33,
+    "links": 29,
+    "services": 110,
+    "findings": 94,
+    "status": "completed",
+    "job_id": "6e9311b56b0e"
+  },
+  {
+    "snapshot_id": "snap-20260928T144007Z-b238",
+    "scan_id": "snap-20260928T144007Z-b238",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T14:40:07Z",
+    "finished": "2026-09-28T14:40:10Z",
+    "duration": 4.78,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "5b78f9f0e478"
+  },
+  {
+    "snapshot_id": "snap-20260928T144002Z-2a98",
+    "scan_id": "snap-20260928T144002Z-2a98",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-8"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T14:40:02Z",
+    "finished": "2026-09-28T14:40:04Z",
+    "duration": 4.31,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "d2e2d537c379"
+  },
+  {
+    "snapshot_id": "snap-20260928T143957Z-ad12",
+    "scan_id": "snap-20260928T143957Z-ad12",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T14:39:57Z",
+    "finished": "2026-09-28T14:39:59Z",
+    "duration": 4.61,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "ecfdfc2d0751"
+  },
+  {
+    "snapshot_id": "snap-20260928T142556Z-b18e",
+    "scan_id": "snap-20260928T142556Z-b18e",
+    "target": "demo:medium",
+    "targets": [
+      "demo:medium:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T14:25:56Z",
+    "finished": "2026-09-28T14:26:03Z",
+    "duration": 9.22,
+    "devices": 50,
+    "links": 42,
+    "services": 168,
+    "findings": 141,
+    "status": "completed",
+    "job_id": "1eb3d44111bf"
+  },
+  {
+    "snapshot_id": "snap-20260928T135419Z-539c",
+    "scan_id": "snap-20260928T135419Z-539c",
+    "target": "demo:large",
+    "targets": [
+      "demo:large:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-28T13:54:19Z",
+    "finished": "2026-09-28T13:54:23Z",
+    "duration": 5.87,
+    "devices": 70,
+    "links": 60,
+    "services": 227,
+    "findings": 172,
+    "status": "completed",
+    "job_id": "1b4a78d7a737"
+  },
+  {
+    "snapshot_id": "snap-20260928T135120Z",
+    "scan_id": "snap-20260928T135120Z",
+    "target": "192.168.1.0/24",
+    "targets": [
+      "192.168.1.0/24"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "normal",
+    "started": "1970-01-02T04:50:59Z",
+    "finished": "2026-09-28T13:51:32Z",
+    "duration": 11.92,
+    "devices": 3,
+    "links": 0,
+    "services": 1,
+    "findings": 5,
+    "status": "completed",
+    "job_id": "406d0b74ea03"
+  },
+  {
+    "snapshot_id": "snap-20260928T133827Z",
+    "scan_id": "snap-20260928T133827Z",
+    "target": "192.168.1.0/24",
+    "targets": [
+      "192.168.1.0/24"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "normal",
+    "started": "1970-01-02T04:38:05Z",
+    "finished": "2026-09-28T13:38:40Z",
+    "duration": 12.94,
+    "devices": 4,
+    "links": 0,
+    "services": 6,
+    "findings": 6,
+    "status": "completed",
+    "job_id": "aa6d25384b52"
+  },
+  {
+    "snapshot_id": "snap-20260928T132126Z",
+    "scan_id": "snap-20260928T132126Z",
+    "target": "192.168.1.0/24",
+    "targets": [
+      "192.168.1.0/24"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "normal",
+    "started": "1970-01-02T04:21:05Z",
+    "finished": "2026-09-28T13:21:34Z",
+    "duration": 8.31,
+    "devices": 2,
+    "links": 0,
+    "services": 6,
+    "findings": 4,
+    "status": "completed",
+    "job_id": "ed1b6ab38577"
+  },
+  {
+    "snapshot_id": "snap-20260927T091149Z",
+    "scan_id": "snap-20260927T091149Z",
+    "target": "192.168.1.0/24",
+    "targets": [
+      "192.168.1.0/24"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "fast",
+    "started": "1970-01-01T00:11:30Z",
+    "finished": "2026-09-27T09:12:00Z",
+    "duration": 11.54,
+    "devices": 2,
+    "links": 0,
+    "services": 2,
+    "findings": 2,
+    "status": "completed",
+    "job_id": "85c954594c29"
+  },
+  {
+    "snapshot_id": "snap-20260927T085840Z",
+    "scan_id": "snap-20260927T085840Z",
+    "target": "192.168.1.0/24",
+    "targets": [
+      "192.168.1.0/24"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "normal",
+    "started": "1970-01-06T06:26:44Z",
+    "finished": "2026-09-27T08:59:04Z",
+    "duration": 24.21,
+    "devices": 1,
+    "links": 0,
+    "services": 1,
+    "findings": 3,
+    "status": "completed",
+    "job_id": "d900b261cf37"
+  },
+  {
+    "snapshot_id": "snap-20260927T084647Z-394b",
+    "scan_id": "snap-20260927T084647Z-394b",
+    "target": "demo:medium",
+    "targets": [
+      "demo:medium:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T08:46:47Z",
+    "finished": "2026-09-27T08:46:53Z",
+    "duration": 7.99,
+    "devices": 50,
+    "links": 42,
+    "services": 168,
+    "findings": 141,
+    "status": "completed",
+    "job_id": "ccc3bc38dd5a"
+  },
+  {
+    "snapshot_id": "snap-20260927T083601Z",
+    "scan_id": "snap-20260927T083601Z",
+    "target": "127.0.0.1/32",
+    "targets": [
+      "127.0.0.1/32"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "fast",
+    "started": "1970-01-06T06:04:05Z",
+    "finished": "2026-09-27T08:36:04Z",
+    "duration": 2.89,
+    "devices": 1,
+    "links": 0,
+    "services": 1,
+    "findings": 1,
+    "status": "completed",
+    "job_id": "c0371110b4a0"
+  },
+  {
+    "snapshot_id": "snap-20260927T083557Z-ce74",
+    "scan_id": "snap-20260927T083557Z-ce74",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-21"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T08:35:57Z",
+    "finished": "2026-09-27T08:36:01Z",
+    "duration": 5.77,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "3196baccb66a"
+  },
+  {
+    "snapshot_id": "snap-20260927T083551Z-aa0b",
+    "scan_id": "snap-20260927T083551Z-aa0b",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T08:35:51Z",
+    "finished": "2026-09-27T08:35:55Z",
+    "duration": 5.36,
+    "devices": 33,
+    "links": 29,
+    "services": 110,
+    "findings": 94,
+    "status": "completed",
+    "job_id": "690407a537c0"
+  },
+  {
+    "snapshot_id": "snap-20260927T083544Z-9537",
+    "scan_id": "snap-20260927T083544Z-9537",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T08:35:44Z",
+    "finished": "2026-09-27T08:35:49Z",
+    "duration": 6.13,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "ffea61d83341"
+  },
+  {
+    "snapshot_id": "snap-20260927T083538Z-a463",
+    "scan_id": "snap-20260927T083538Z-a463",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-8"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T08:35:38Z",
+    "finished": "2026-09-27T08:35:42Z",
+    "duration": 6.25,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "26976b7467d1"
+  },
+  {
+    "snapshot_id": "snap-20260927T083531Z-b6b4",
+    "scan_id": "snap-20260927T083531Z-b6b4",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T08:35:31Z",
+    "finished": "2026-09-27T08:35:36Z",
+    "duration": 6.12,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "ae92840642fa"
+  },
+  {
+    "snapshot_id": "snap-20260927T080016Z-7879",
+    "scan_id": "snap-20260927T080016Z-7879",
+    "target": "demo:medium",
+    "targets": [
+      "demo:medium:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T08:00:16Z",
+    "finished": "2026-09-27T08:00:21Z",
+    "duration": 7.19,
+    "devices": 50,
+    "links": 42,
+    "services": 168,
+    "findings": 141,
+    "status": "completed",
+    "job_id": "d703edc275ef"
+  },
+  {
+    "snapshot_id": "snap-20260927T075906Z",
+    "scan_id": "snap-20260927T075906Z",
+    "target": "192.168.1.0/24",
+    "targets": [
+      "192.168.1.0/24"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "deep",
+    "started": "1970-01-06T05:27:10Z",
+    "finished": "2026-09-27T07:59:23Z",
+    "duration": 17.6,
+    "devices": 2,
+    "links": 0,
+    "services": 4,
+    "findings": 4,
+    "status": "completed",
+    "job_id": "891deaf2d757"
+  },
+  {
+    "snapshot_id": "snap-20260927T075732Z-96ca",
+    "scan_id": "snap-20260927T075732Z-96ca",
+    "target": "demo:medium",
+    "targets": [
+      "demo:medium:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T07:57:32Z",
+    "finished": "2026-09-27T07:57:39Z",
+    "duration": 8.75,
+    "devices": 50,
+    "links": 42,
+    "services": 168,
+    "findings": 141,
+    "status": "completed",
+    "job_id": "8e088a480e43"
+  },
+  {
+    "snapshot_id": "snap-20260927T075000Z-add6",
+    "scan_id": "snap-20260927T075000Z-add6",
+    "target": "demo:medium",
+    "targets": [
+      "demo:medium:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T07:50:00Z",
+    "finished": "2026-09-27T07:50:06Z",
+    "duration": 7.89,
+    "devices": 50,
+    "links": 42,
+    "services": 168,
+    "findings": 141,
+    "status": "completed",
+    "job_id": "b07a024d0ec4"
+  },
+  {
+    "snapshot_id": "snap-20260927T064932Z",
+    "scan_id": "snap-20260927T064932Z",
+    "target": "127.0.0.1/32",
+    "targets": [
+      "127.0.0.1/32"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "fast",
+    "started": "1970-01-06T04:17:36Z",
+    "finished": "2026-09-27T06:49:34Z",
+    "duration": 1.96,
+    "devices": 1,
+    "links": 0,
+    "services": 1,
+    "findings": 1,
+    "status": "completed",
+    "job_id": "32ab6e334057"
+  },
+  {
+    "snapshot_id": "snap-20260927T064930Z",
+    "scan_id": "snap-20260927T064930Z",
+    "target": "127.0.0.1/32",
+    "targets": [
+      "127.0.0.1/32"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "fast",
+    "started": "1970-01-06T04:17:34Z",
+    "finished": "2026-09-27T06:49:32Z",
+    "duration": 2.8,
+    "devices": 1,
+    "links": 0,
+    "services": 1,
+    "findings": 1,
+    "status": "completed",
+    "job_id": "7833eb47916a"
+  },
+  {
+    "snapshot_id": "snap-20260927T064926Z-88f0",
+    "scan_id": "snap-20260927T064926Z-88f0",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-21"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T06:49:26Z",
+    "finished": "2026-09-27T06:49:29Z",
+    "duration": 4.84,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "279fe01495d4"
+  },
+  {
+    "snapshot_id": "snap-20260927T064920Z-c683",
+    "scan_id": "snap-20260927T064920Z-c683",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T06:49:20Z",
+    "finished": "2026-09-27T06:49:23Z",
+    "duration": 4.6,
+    "devices": 33,
+    "links": 29,
+    "services": 110,
+    "findings": 94,
+    "status": "completed",
+    "job_id": "25c32a598add"
+  },
+  {
+    "snapshot_id": "snap-20260927T064915Z-d346",
+    "scan_id": "snap-20260927T064915Z-d346",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T06:49:15Z",
+    "finished": "2026-09-27T06:49:18Z",
+    "duration": 4.94,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "0804e91a3ac4"
+  },
+  {
+    "snapshot_id": "snap-20260927T064909Z-2a72",
+    "scan_id": "snap-20260927T064909Z-2a72",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-8"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T06:49:09Z",
+    "finished": "2026-09-27T06:49:12Z",
+    "duration": 4.69,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "6c187a661471"
+  },
+  {
+    "snapshot_id": "snap-20260927T064904Z-84bc",
+    "scan_id": "snap-20260927T064904Z-84bc",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T06:49:04Z",
+    "finished": "2026-09-27T06:49:07Z",
+    "duration": 4.98,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "c67504a25419"
+  },
+  {
+    "snapshot_id": "snap-20260927T063844Z",
+    "scan_id": "snap-20260927T063844Z",
+    "target": "192.168.1.0/24",
+    "targets": [
+      "192.168.1.0/24"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "fast",
+    "started": "1970-01-06T04:06:48Z",
+    "finished": "2026-09-27T06:43:50Z",
+    "duration": 306.64,
+    "devices": 2,
+    "links": 0,
+    "services": 2,
+    "findings": 2,
+    "status": "completed",
+    "job_id": "05e4f30e5031"
+  },
+  {
+    "snapshot_id": "snap-20260927T063833Z",
+    "scan_id": "snap-20260927T063833Z",
+    "target": "127.0.0.1/32",
+    "targets": [
+      "127.0.0.1/32"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "fast",
+    "started": "1970-01-06T04:06:37Z",
+    "finished": "2026-09-27T06:38:35Z",
+    "duration": 1.93,
+    "devices": 1,
+    "links": 0,
+    "services": 1,
+    "findings": 1,
+    "status": "completed",
+    "job_id": "5c99f0824638"
+  },
+  {
+    "snapshot_id": "snap-20260927T063830Z",
+    "scan_id": "snap-20260927T063830Z",
+    "target": "127.0.0.1/32",
+    "targets": [
+      "127.0.0.1/32"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "fast",
+    "started": "1970-01-06T04:06:34Z",
+    "finished": "2026-09-27T06:38:32Z",
+    "duration": 2.76,
+    "devices": 1,
+    "links": 0,
+    "services": 1,
+    "findings": 1,
+    "status": "completed",
+    "job_id": "e08f327956a7"
+  },
+  {
+    "snapshot_id": "snap-20260927T063826Z-b71f",
+    "scan_id": "snap-20260927T063826Z-b71f",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-21"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T06:38:26Z",
+    "finished": "2026-09-27T06:38:29Z",
+    "duration": 4.7,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "eed91d59558c"
+  },
+  {
+    "snapshot_id": "snap-20260927T063820Z-0b79",
+    "scan_id": "snap-20260927T063820Z-0b79",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T06:38:20Z",
+    "finished": "2026-09-27T06:38:23Z",
+    "duration": 4.41,
+    "devices": 33,
+    "links": 29,
+    "services": 110,
+    "findings": 94,
+    "status": "completed",
+    "job_id": "65d63fa30740"
+  },
+  {
+    "snapshot_id": "snap-20260927T063815Z-1b30",
+    "scan_id": "snap-20260927T063815Z-1b30",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T06:38:15Z",
+    "finished": "2026-09-27T06:38:18Z",
+    "duration": 4.6,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "957150c3203f"
+  },
+  {
+    "snapshot_id": "snap-20260927T063809Z-5b62",
+    "scan_id": "snap-20260927T063809Z-5b62",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-8"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T06:38:09Z",
+    "finished": "2026-09-27T06:38:13Z",
+    "duration": 4.63,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "6c8e4eaa3964"
+  },
+  {
+    "snapshot_id": "snap-20260927T063804Z-6191",
+    "scan_id": "snap-20260927T063804Z-6191",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T06:38:04Z",
+    "finished": "2026-09-27T06:38:07Z",
+    "duration": 4.96,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "41b090c688a5"
+  },
+  {
+    "snapshot_id": "snap-20260927T062746Z",
+    "scan_id": "snap-20260927T062746Z",
+    "target": "127.0.0.1/32",
+    "targets": [
+      "127.0.0.1/32"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "fast",
+    "started": "1970-01-06T03:55:50Z",
+    "finished": "2026-09-27T06:27:48Z",
+    "duration": 2.13,
+    "devices": 1,
+    "links": 0,
+    "services": 1,
+    "findings": 1,
+    "status": "completed",
+    "job_id": "d80895dcadca"
+  },
+  {
+    "snapshot_id": "snap-20260927T062742Z",
+    "scan_id": "snap-20260927T062742Z",
+    "target": "127.0.0.1/32",
+    "targets": [
+      "127.0.0.1/32"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "fast",
+    "started": "1970-01-06T03:55:46Z",
+    "finished": "2026-09-27T06:27:45Z",
+    "duration": 3.13,
+    "devices": 1,
+    "links": 0,
+    "services": 1,
+    "findings": 1,
+    "status": "completed",
+    "job_id": "07dfd0edf369"
+  },
+  {
+    "snapshot_id": "snap-20260927T062737Z-0fe6",
+    "scan_id": "snap-20260927T062737Z-0fe6",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-21"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T06:27:37Z",
+    "finished": "2026-09-27T06:27:41Z",
+    "duration": 6.27,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "ba101ed6521f"
+  },
+  {
+    "snapshot_id": "snap-20260927T062730Z-0ef7",
+    "scan_id": "snap-20260927T062730Z-0ef7",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T06:27:30Z",
+    "finished": "2026-09-27T06:27:34Z",
+    "duration": 5.69,
+    "devices": 33,
+    "links": 29,
+    "services": 110,
+    "findings": 94,
+    "status": "completed",
+    "job_id": "1365873c87ef"
+  },
+  {
+    "snapshot_id": "snap-20260927T062723Z-a7b5",
+    "scan_id": "snap-20260927T062723Z-a7b5",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T06:27:23Z",
+    "finished": "2026-09-27T06:27:28Z",
+    "duration": 6.35,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "2a77945194e9"
+  },
+  {
+    "snapshot_id": "snap-20260927T062717Z-3a97",
+    "scan_id": "snap-20260927T062717Z-3a97",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-8"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T06:27:17Z",
+    "finished": "2026-09-27T06:27:21Z",
+    "duration": 6.44,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "c43fadaf30a1"
+  },
+  {
+    "snapshot_id": "snap-20260927T062709Z-3bff",
+    "scan_id": "snap-20260927T062709Z-3bff",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T06:27:09Z",
+    "finished": "2026-09-27T06:27:14Z",
+    "duration": 6.78,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "ce5ad3d56234"
+  },
+  {
+    "snapshot_id": "snap-20260927T061150Z",
+    "scan_id": "snap-20260927T061150Z",
+    "target": "192.168.1.0/24",
+    "targets": [
+      "192.168.1.0/24"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "normal",
+    "started": "1970-01-06T03:39:54Z",
+    "finished": "2026-09-27T06:12:00Z",
+    "duration": 10.2,
+    "devices": 2,
+    "links": 0,
+    "services": 6,
+    "findings": 4,
+    "status": "completed",
+    "job_id": "461175356b85"
+  },
+  {
+    "snapshot_id": "snap-20260927T061026Z",
+    "scan_id": "snap-20260927T061026Z",
+    "target": "127.0.0.1/32",
+    "targets": [
+      "127.0.0.1/32"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "fast",
+    "started": "1970-01-06T03:38:30Z",
+    "finished": "2026-09-27T06:10:28Z",
+    "duration": 2.82,
+    "devices": 1,
+    "links": 0,
+    "services": 1,
+    "findings": 1,
+    "status": "completed",
+    "job_id": "dd4e4fa72837"
+  },
+  {
+    "snapshot_id": "snap-20260927T061020Z-11df",
+    "scan_id": "snap-20260927T061020Z-11df",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-21"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T06:10:20Z",
+    "finished": "2026-09-27T06:10:25Z",
+    "duration": 6.93,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "6dbed63025e6"
+  },
+  {
+    "snapshot_id": "snap-20260927T061013Z-af8d",
+    "scan_id": "snap-20260927T061013Z-af8d",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T06:10:13Z",
+    "finished": "2026-09-27T06:10:17Z",
+    "duration": 5.75,
+    "devices": 33,
+    "links": 29,
+    "services": 110,
+    "findings": 94,
+    "status": "completed",
+    "job_id": "0788ff6c9052"
+  },
+  {
+    "snapshot_id": "snap-20260927T061005Z-7da0",
+    "scan_id": "snap-20260927T061005Z-7da0",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T06:10:05Z",
+    "finished": "2026-09-27T06:10:10Z",
+    "duration": 6.96,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "04f5a4c4c1f0"
+  },
+  {
+    "snapshot_id": "snap-20260927T060957Z-a118",
+    "scan_id": "snap-20260927T060957Z-a118",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-8"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T06:09:57Z",
+    "finished": "2026-09-27T06:10:02Z",
+    "duration": 6.76,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "3b65c063268a"
+  },
+  {
+    "snapshot_id": "snap-20260927T060950Z-a959",
+    "scan_id": "snap-20260927T060950Z-a959",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T06:09:50Z",
+    "finished": "2026-09-27T06:09:55Z",
+    "duration": 7.25,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "edf709b0d040"
+  },
+  {
+    "snapshot_id": "snap-20260927T060935Z",
+    "scan_id": "snap-20260927T060935Z",
+    "target": "127.0.0.1/32",
+    "targets": [
+      "127.0.0.1/32"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "fast",
+    "started": "1970-01-06T03:37:39Z",
+    "finished": "2026-09-27T06:09:37Z",
+    "duration": 3.06,
+    "devices": 1,
+    "links": 0,
+    "services": 1,
+    "findings": 1,
+    "status": "completed",
+    "job_id": "dafcb6498498"
+  },
+  {
+    "snapshot_id": "snap-20260927T055555Z",
+    "scan_id": "snap-20260927T055555Z",
+    "target": "192.168.1.0/24",
+    "targets": [
+      "192.168.1.0/24"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "deep",
+    "started": "1970-01-06T03:23:59Z",
+    "finished": "2026-09-27T05:56:00Z",
+    "duration": 5.14,
+    "devices": 1,
+    "links": 0,
+    "services": 0,
+    "findings": 1,
+    "status": "completed",
+    "job_id": "60ab5679b411"
+  },
+  {
+    "snapshot_id": "snap-20260927T055421Z",
+    "scan_id": "snap-20260927T055421Z",
+    "target": "192.168.1.0/24",
+    "targets": [
+      "192.168.1.0/24"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "normal",
+    "started": "1970-01-06T03:22:25Z",
+    "finished": "2026-09-27T05:54:31Z",
+    "duration": 9.93,
+    "devices": 2,
+    "links": 0,
+    "services": 6,
+    "findings": 4,
+    "status": "completed",
+    "job_id": "d165ad847715"
+  },
+  {
+    "snapshot_id": "snap-20260927T054154Z",
+    "scan_id": "snap-20260927T054154Z",
+    "target": "127.0.0.1/32",
+    "targets": [
+      "127.0.0.1/32"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "deep",
+    "started": "1970-01-06T03:09:58Z",
+    "finished": "2026-09-27T05:42:00Z",
+    "duration": 6.63,
+    "devices": 1,
+    "links": 0,
+    "services": 2,
+    "findings": 1,
+    "status": "completed",
+    "job_id": "064bc8c65805"
+  },
+  {
+    "snapshot_id": "snap-20260927T054110Z-aae9",
+    "scan_id": "snap-20260927T054110Z-aae9",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T05:41:10Z",
+    "finished": "2026-09-27T05:41:15Z",
+    "duration": 7.53,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "fd8843a208ed"
+  },
+  {
+    "snapshot_id": "snap-20260927T053129Z",
+    "scan_id": "snap-20260927T053129Z",
+    "target": "192.168.1.0/24",
+    "targets": [
+      "192.168.1.0/24"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "deep",
+    "started": "1970-01-06T02:59:33Z",
+    "finished": "2026-09-27T05:31:38Z",
+    "duration": 8.7,
+    "devices": 1,
+    "links": 0,
+    "services": 3,
+    "findings": 1,
+    "status": "completed",
+    "job_id": "ceb8f16ab731"
+  },
+  {
+    "snapshot_id": "snap-20260927T052100Z-2cf4",
+    "scan_id": "snap-20260927T052100Z-2cf4",
+    "target": "demo:medium",
+    "targets": [
+      "demo:medium:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T05:21:00Z",
+    "finished": "2026-09-27T05:21:03Z",
+    "duration": 4.84,
+    "devices": 50,
+    "links": 42,
+    "services": 168,
+    "findings": 141,
+    "status": "completed",
+    "job_id": "04e916c947d5"
+  },
+  {
+    "snapshot_id": "snap-20260927T051453Z-1770",
+    "scan_id": "snap-20260927T051453Z-1770",
+    "target": "demo:medium",
+    "targets": [
+      "demo:medium:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T05:14:53Z",
+    "finished": "2026-09-27T05:14:56Z",
+    "duration": 5.13,
+    "devices": 50,
+    "links": 42,
+    "services": 168,
+    "findings": 141,
+    "status": "completed",
+    "job_id": "2487da697c64"
+  },
+  {
+    "snapshot_id": "snap-20260927T051359Z",
+    "scan_id": "snap-20260927T051359Z",
+    "target": "192.168.1.0/24",
+    "targets": [
+      "192.168.1.0/24"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "normal",
+    "started": "1970-01-06T02:42:03Z",
+    "finished": "2026-09-27T05:14:05Z",
+    "duration": 5.66,
+    "devices": 2,
+    "links": 0,
+    "services": 5,
+    "findings": 2,
+    "status": "completed",
+    "job_id": "e0ff7d918264"
+  },
+  {
+    "snapshot_id": "snap-20260927T042749Z-ae08",
+    "scan_id": "snap-20260927T042749Z-ae08",
+    "target": "demo:medium",
+    "targets": [
+      "demo:medium:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T04:27:49Z",
+    "finished": "2026-09-27T04:27:52Z",
+    "duration": 5.09,
+    "devices": 50,
+    "links": 42,
+    "services": 168,
+    "findings": 141,
+    "status": "completed",
+    "job_id": "03ca2810a3a1"
+  },
+  {
+    "snapshot_id": "snap-20260927T042445Z",
+    "scan_id": "snap-20260927T042445Z",
+    "target": "192.168.1.0/24",
+    "targets": [
+      "192.168.1.0/24"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "normal",
+    "started": "1970-01-06T01:52:49Z",
+    "finished": "2026-09-27T04:24:53Z",
+    "duration": 8.1,
+    "devices": 2,
+    "links": 0,
+    "services": 6,
+    "findings": 4,
+    "status": "completed",
+    "job_id": "42ff6105877e"
+  },
+  {
+    "snapshot_id": "snap-20260927T041435Z-e5a2",
+    "scan_id": "snap-20260927T041435Z-e5a2",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T04:14:35Z",
+    "finished": "2026-09-27T04:14:38Z",
+    "duration": 4.1,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "3eaf0cb0cfe3"
+  },
+  {
+    "snapshot_id": "snap-20260927T040140Z-f711",
+    "scan_id": "snap-20260927T040140Z-f711",
+    "target": "demo:medium",
+    "targets": [
+      "demo:medium:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T04:01:40Z",
+    "finished": "2026-09-27T04:01:43Z",
+    "duration": 5.07,
+    "devices": 50,
+    "links": 42,
+    "services": 168,
+    "findings": 141,
+    "status": "completed",
+    "job_id": "8017ed57f41b"
+  },
+  {
+    "snapshot_id": "snap-20260927T035748Z-7680",
+    "scan_id": "snap-20260927T035748Z-7680",
+    "target": "demo:medium",
+    "targets": [
+      "demo:medium:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T03:57:48Z",
+    "finished": "2026-09-27T03:57:51Z",
+    "duration": 4.88,
+    "devices": 50,
+    "links": 42,
+    "services": 168,
+    "findings": 141,
+    "status": "completed",
+    "job_id": "b8b803f2a323"
+  },
+  {
+    "snapshot_id": "snap-20260927T035705Z-2d67",
+    "scan_id": "snap-20260927T035705Z-2d67",
+    "target": "demo:medium",
+    "targets": [
+      "demo:medium:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T03:57:05Z",
+    "finished": "2026-09-27T03:57:08Z",
+    "duration": 5.21,
+    "devices": 50,
+    "links": 42,
+    "services": 168,
+    "findings": 141,
+    "status": "completed",
+    "job_id": "20781b065d71"
+  },
+  {
+    "snapshot_id": "snap-20260927T033424Z",
+    "scan_id": "snap-20260927T033424Z",
+    "target": "127.0.0.1/32",
+    "targets": [
+      "127.0.0.1/32"
+    ],
+    "environment": "live",
+    "mode": "live",
+    "scan_mode": "fast",
+    "started": "1970-01-06T01:02:29Z",
+    "finished": "2026-09-27T03:34:27Z",
+    "duration": 2.47,
+    "devices": 1,
+    "links": 0,
+    "services": 1,
+    "findings": 1,
+    "status": "completed",
+    "job_id": "0605d569c98a"
+  },
+  {
+    "snapshot_id": "snap-20260927T033422Z-b34e",
+    "scan_id": "snap-20260927T033422Z-b34e",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-21"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T03:34:22Z",
+    "finished": "2026-09-27T03:34:24Z",
+    "duration": 3.66,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "ab4d633acc51"
+  },
+  {
+    "snapshot_id": "snap-20260927T033418Z-4a39",
+    "scan_id": "snap-20260927T033418Z-4a39",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T03:34:18Z",
+    "finished": "2026-09-27T03:34:19Z",
+    "duration": 3.45,
+    "devices": 33,
+    "links": 29,
+    "services": 110,
+    "findings": 94,
+    "status": "completed",
+    "job_id": "c71e9459544e"
+  },
+  {
+    "snapshot_id": "snap-20260927T033413Z-4beb",
+    "scan_id": "snap-20260927T033413Z-4beb",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T03:34:13Z",
+    "finished": "2026-09-27T03:34:15Z",
+    "duration": 3.65,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "727e93798165"
+  },
+  {
+    "snapshot_id": "snap-20260927T033409Z-3f31",
+    "scan_id": "snap-20260927T033409Z-3f31",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-8"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T03:34:09Z",
+    "finished": "2026-09-27T03:34:11Z",
+    "duration": 3.64,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "229906d22da0"
+  },
+  {
+    "snapshot_id": "snap-20260927T033405Z-8243",
+    "scan_id": "snap-20260927T033405Z-8243",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T03:34:05Z",
+    "finished": "2026-09-27T03:34:07Z",
+    "duration": 3.78,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "ea4a2ac17f5e"
+  },
+  {
+    "snapshot_id": "snap-20260927T032643Z-f1ba",
+    "scan_id": "snap-20260927T032643Z-f1ba",
+    "target": "demo:medium",
+    "targets": [
+      "demo:medium:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T03:26:43Z",
+    "finished": "2026-09-27T03:26:46Z",
+    "duration": 3.93,
+    "devices": 50,
+    "links": 42,
+    "services": 168,
+    "findings": 141,
+    "status": "completed",
+    "job_id": "e0e655833085"
+  },
+  {
+    "snapshot_id": "snap-20260927T032624Z-3b9b",
+    "scan_id": "snap-20260927T032624Z-3b9b",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-8"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T03:26:24Z",
+    "finished": "2026-09-27T03:26:26Z",
+    "duration": 3.82,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "57320eacf2bd"
+  },
+  {
+    "snapshot_id": "snap-20260927T032620Z-4e6d",
+    "scan_id": "snap-20260927T032620Z-4e6d",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T03:26:20Z",
+    "finished": "2026-09-27T03:26:22Z",
+    "duration": 3.76,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "c99b68aae801"
+  },
+  {
+    "snapshot_id": "snap-20260927T032128Z-8560",
+    "scan_id": "snap-20260927T032128Z-8560",
+    "target": "demo:small",
+    "targets": [
+      "demo:small:seed-7"
+    ],
+    "environment": "demo",
+    "mode": "lab",
+    "scan_mode": "normal",
+    "started": "2026-09-27T03:21:28Z",
+    "finished": "2026-09-27T03:21:30Z",
+    "duration": 3.88,
+    "devices": 40,
+    "links": 32,
+    "services": 137,
+    "findings": 129,
+    "status": "completed",
+    "job_id": "4b562b241ac2"
+  }
+]
